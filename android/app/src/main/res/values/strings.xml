@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">營養365</string>
+    <string name="action_settings">我的設定</string>
+
+    <string name="menu_mymenu">我的選單</string>
+    <string name="menu_mymenu_settings">我的設定</string>
+    <string name="menu_mymenu_weight">體重記錄</string>
+    <string name="menu_mymenu_calory">卡路里記錄</string>
+    <string name="menu_customer_menu">客戶選單</string>
+    <string name="menu_customer_query">客戶查詢</string>
+    <string name="menu_customer_product">產品配置</string>
+    <string name="menu_customer_weight">身體指數</string>
+
+    <string name="menu_about">關於我們</string>
+    <!--=========== menu start============-->
+    <string name="edit_message">修改</string>
+    <string name="action_customer">客戶查詢</string>
+    <string name="action_product">產品配置</string>
+    <string name="action_base">體重記錄</string>
+    <string name="action_calory">卡路里記錄</string>
+
+    <!--=========== menu end============-->
+    <string name="btnQuery">查詢</string>
+
+
+    <!--=========== settings start ======-->
+
+    <string name="sys_sex">性別</string>
+    <string name="sys_age">年齡</string>
+    <string name="sys_height">身高</string>
+    <string name="sys_base_weight">現在體重</string>
+    <string name="sys_target_weight">目標體重</string>
+
+    <!--=========== settings end ======-->
+
+
+    <string name="sys_settings">系統設定</string>
+    <string name="base_settings">基本設定</string>
+    <string name="mode">模式</string>
+    <string name="mode_summary">請選擇模式</string>
+    <string name="username">姓名</string>
+    <string name="username_summary">請輸入姓名</string>
+    <string name="password">密碼</string>
+    <string name="password_summary">請輸入密碼</string>
+    <string name="birthday">生日</string>
+    <string name="birthday_summary">請選擇生日</string>
+
+
+    <string name="email">電子郵件</string>
+    <string name="email_summary">請輸入您的電子郵件</string>
+
+
+    <!--=========== settings end =========-->
+
+    <!--=============setting value===========-->
+
+
+    <!--==============setting value end=======-->
+    <!--=========== body table start ======-->
+    <string name="fat_rate">體脂</string>
+    <string name="date">日期</string>
+    <string name="send">送出\ntest this </string>
+    <string name="cancel">取消</string>
+    <!--===============customer=================-->
+    <string name="query_customer_name">客戶姓名</string>
+    <string name="query_customer_id">客戶編號</string>
+    <!--=================customer end================-->
+</resources>

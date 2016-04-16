@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <PreferenceCategory
+        android:key="sys_settings"
+        android:title="基本設定">
+    <ListPreference
+        android:key="sys_sex"
+        android:title="@string/sys_sex"
+
+        android:entries="@array/sys_opts_sex_item"
+        android:entryValues="@array/sys_opts_sex_value"
+
+        />
+
+        <EditTextPreference
+        android:key="sys_age"
+        android:inputType="numberSigned"
+        android:title="@string/sys_age"
+        />
+
+        <EditTextPreference
+            android:key="sys_height"
+            android:inputType="numberSigned"
+            android:title="@string/sys_height"
+            />
+
+        <EditTextPreference
+            android:key="sys_base_weight"
+            android:inputType="numberSigned"
+            android:title="@string/sys_base_weight"
+            />
+
+        <EditTextPreference
+            android:key="sys_target_weight"
+            android:inputType="numberSigned"
+            android:title="@string/sys_target_weight"
+            />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:key="server_settings"
+        android:title="資料同步設定">
+        <EditTextPreference
+            android:key="email"
+            android:inputType="textEmailAddress"
+            android:title="Email帳號"
+            android:summary="請輸入註冊的會員帳號" />
+
+        <EditTextPreference
+            android:key="nickname"
+            android:summary="請輸入䁥稱"
+            android:title="䁥稱" />
+
+
+        <!--
+        <PreferenceScreen
+            android:key="voicemail_category"
+            android:title="Voicemail"
+            android:persistent="false">
+
+            <Preference
+                android:title="Provider"
+                android:summary="Airtel"
+                android:key="provider" />
+
+
+
+        </PreferenceScreen>
+        -->
+
+    </PreferenceCategory>
+
+
+
+<!--
+    <CheckBoxPreference
+        android:key="get_email"
+        android:title="接收最新消息"
+        />
+-->
+</PreferenceScreen>
