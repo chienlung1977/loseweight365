@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
 
+        Intent intent;
 
         switch (item.getItemId()){
             case R.id.action_mymenu_settings:
@@ -89,7 +90,20 @@ public class MainActivity extends AppCompatActivity {
                 //openCalory();
                 return true;
             case R.id.action_about_us:
+
                 openAboutUs();
+                return true;
+            case R.id.action_get_api:
+                intent=new Intent(this,GetApiActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_menu_register:
+                intent=new Intent(this,RegisterActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_menu_login:
+                intent=new Intent(this,LoginActivity.class);
+                startActivity(intent);
                 return true;
         }
 
