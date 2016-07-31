@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.InputStream;
+
 /**
  * Created by alvinlin on 2015/10/28.
  */
@@ -23,6 +25,9 @@ public class BodyRecordMain extends AppCompatActivity {
 
     private RecordCursorAdapter itemAdapter;
     private long  _id ;
+    private final int PICK_IMAGE = 101;
+    private final int ADD_RECORD=1;
+    //private final int TAKE_PICTURE=102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,10 @@ public class BodyRecordMain extends AppCompatActivity {
         // mList.addHeaderView(header);
 
         bindData();
+
+
+
+
     }
 
     /*
@@ -59,31 +68,42 @@ public class BodyRecordMain extends AppCompatActivity {
 
     */
 
+    private void bindData(TIME_PERIOD period){
 
-    private void bindData(){
+        String queryString ="";
 
+        switch (period){
+            case MORNING:
+                queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=6 AND cast(strftime('%H',CREATE_TIME) as integer)<12 ORDER BY CREATE_TIME DESC";
+                break;
+            case AFTERNOON:
+                queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=12 AND cast(strftime('%H',CREATE_TIME) as integer)<18 ORDER BY CREATE_TIME DESC";
+                break;
+            case NIEGHT:
+                queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=18 AND cast(strftime('%H',CREATE_TIME) as integer) <=23 ORDER BY CREATE_TIME DESC";
+                break;
+            case DAWN:
+                queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=0 AND cast(strftime('%H',CREATE_TIME) as integer)<6 ORDER BY CREATE_TIME DESC";
+                break;
+           default:
+               queryString="SELECT * FROM RECORD ORDER BY CREATE_TIME DESC";
+               break;
+        }
 
         SQLiteDatabase db =DbHelper.getDatabase(this);
-        Cursor todoCursor =db.rawQuery("SELECT * FROM RECORD ORDER BY CREATE_TIME DESC", null);
-
+        Cursor todoCursor =db.rawQuery(queryString, null);
 
         ListView mList =(ListView)findViewById(R.id.recordList);
 
+        // View header = getLayoutInflater().inflate(R.layout.record_header,null);
 
-       // View header = getLayoutInflater().inflate(R.layout.record_header,null);
-
-       // mList.addHeaderView(header);
-
+        // mList.addHeaderView(header);
 
         itemAdapter =new RecordCursorAdapter(this,todoCursor);
-
         mList.setAdapter(itemAdapter);
 
 
 
-
-
-        // TODO: 2016/4/4 補上修改和刪除的函式
         mList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -102,7 +122,14 @@ public class BodyRecordMain extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //Toast.makeText(getApplicationContext(), "edit position=" + position + ",id=" + id, Toast.LENGTH_SHORT).show();
+                //todo 帶到修改資料頁面
+/*
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_PICK);
+                startActivityForResult(Intent.createChooser(intent, "選擇圖片"), PICK_IMAGE);
+*/
+
             }
         });
 
@@ -127,6 +154,16 @@ public class BodyRecordMain extends AppCompatActivity {
         */
     }
 
+    private enum TIME_PERIOD{
+        ALL,MORNING,AFTERNOON,NIEGHT,DAWN
+    }
+
+    private void bindData(){
+        bindData(TIME_PERIOD.ALL);
+    }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -138,7 +175,22 @@ public class BodyRecordMain extends AppCompatActivity {
             case R.id.btnAdd:
                 Intent intent =new Intent(this,BodyRecordAdd.class);
                 //startActivity(intent);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent, ADD_RECORD);
+                return true;
+            case R.id.btnView_1:
+                bindData(TIME_PERIOD.MORNING);
+                return true;
+            case R.id.btnView_2:
+                bindData(TIME_PERIOD.AFTERNOON);
+                return true;
+            case R.id.btnView_3:
+                bindData(TIME_PERIOD.NIEGHT);
+                return true;
+            case R.id.btnView_4:
+                bindData(TIME_PERIOD.DAWN);
+                return true;
+            case R.id.btnView_All:
+                bindData(TIME_PERIOD.ALL);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -149,6 +201,26 @@ public class BodyRecordMain extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        try {
+            //
+            if(requestCode == ADD_RECORD &&  resultCode==RESULT_OK){
+                bindData();
+            }
+
+            if (requestCode == PICK_IMAGE && data != null) {
+
+                InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
+                //Now you can do whatever you want with your inpustream, save it as file, upload to a server, decode a bitmap
+            }
+
+            //String result = "requestCode=" + String.valueOf(requestCode) + "resultCode" + String.valueOf(resultCode);
+            //Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception ex){
+
+        }
+        /*
         switch(resultCode){
             case RESULT_OK:
                 //Toast.makeText(this,"ok",Toast.LENGTH_SHORT).show();
@@ -161,7 +233,9 @@ public class BodyRecordMain extends AppCompatActivity {
                 Toast.makeText(this,"error",Toast.LENGTH_SHORT).show();
         }
 
+
         bindData();
+        */
     }
 
     @Override

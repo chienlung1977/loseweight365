@@ -3,55 +3,17 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     >
 
     <PreferenceCategory
         android:key="sys_settings"
         android:title="基本設定">
-    <ListPreference
-        android:key="sys_sex"
-        android:title="@string/sys_sex"
 
-        android:entries="@array/sys_opts_sex_item"
-        android:entryValues="@array/sys_opts_sex_value"
-
-        />
-
-        <EditTextPreference
-        android:key="sys_age"
-        android:inputType="numberSigned"
-        android:title="@string/sys_age"
-        />
-
-        <EditTextPreference
-            android:key="sys_height"
-            android:inputType="numberSigned"
-            android:title="@string/sys_height"
-            />
-
-        <EditTextPreference
-            android:key="sys_base_weight"
-            android:inputType="numberSigned"
-            android:title="@string/sys_base_weight"
-            />
-
-        <EditTextPreference
-            android:key="sys_target_weight"
-            android:inputType="numberSigned"
-            android:title="@string/sys_target_weight"
-            />
-    </PreferenceCategory>
-
-
-    <PreferenceCategory
-        android:key="server_settings"
-        android:title="資料同步設定">
-        <EditTextPreference
-            android:key="email"
-            android:inputType="textEmailAddress"
-            android:title="Email帳號"
-            android:summary="請輸入註冊的會員帳號" />
+        <!--
+        <Preference
+            android:title="帳號"
+            android:enabled="false"
+            ></Preference>
 
         <EditTextPreference
             android:key="nickname"
@@ -59,25 +21,124 @@
             android:title="䁥稱" />
 
 
-        <!--
-        <PreferenceScreen
-            android:key="voicemail_category"
-            android:title="Voicemail"
-            android:persistent="false">
+        <EditTextPreference
+        android:key="sys_age"
+        android:inputType="numberSigned"
+        android:title="@string/sys_age"
+        android:dialogTitle="@string/sys_age"
+        />
 
-            <Preference
-                android:title="Provider"
-                android:summary="Airtel"
-                android:key="provider" />
+        <EditTextPreference
+            android:key="sys_height"
+            android:inputType="numberSigned"
+            android:title="@string/sys_height"
+            android:dialogTitle="@string/sys_height"
+            />
+-->
 
 
+        <ListPreference
+            android:key="sys_sex"
+            android:title="@string/sys_sex"
+            android:entries="@array/sys_opts_sex_item"
+            android:entryValues="@array/sys_opts_sex_value"
+            android:dialogTitle="@string/sys_sex"
+            />
 
-        </PreferenceScreen>
-        -->
+        <EditTextPreference
+            android:key="sys_init_weight"
+            android:inputType="numberDecimal"
+            android:title="@string/sys_init_weight" />
+
+
+</PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:key="sys_settings"
+        android:title="目標設定">
+
+<!--
+
+        <EditTextPreference
+            android:key="sys_short_target"
+            android:inputType="numberSigned"
+            android:title="短期目標體重"
+            />
+
+        <Preference
+            android:key="sys_short_target_date"
+            android:inputType="date"
+            android:title="短期達成日期"
+            />
+-->
+        <EditTextPreference
+            android:key="sys_target_weight"
+            android:inputType="numberDecimal"
+            android:title="@string/sys_target_weight"
+            />
+
+        <Preference
+            android:key="sys_target_weight_date"
+            android:inputType="date"
+            android:title="@string/sys_target_day"
+            />
+
+
+        <ListPreference
+            android:key="sys_base_day_life"
+            android:title="@string/sys_base_action_life"
+            android:entries="@array/sys_opts_day_life_item"
+            android:entryValues="@array/sys_opts_day_life_value"
+            android:defaultValue="@string/sys_opts_day_life_default_value"
+            ></ListPreference>
 
     </PreferenceCategory>
 
 
+    <PreferenceCategory
+        android:key="sys_mynumber"
+        android:title="動態參數">
+        <EditTextPreference
+            android:key="sys_base_weight"
+            android:inputType="numberSigned"
+            android:title="@string/sys_base_weight"
+            android:enabled="false"
+            />
+
+    </PreferenceCategory>
+    <!--
+         <PreferenceCategory
+             android:key="server_settings"
+             android:title="伺服器設定">
+
+
+             <SwitchPreference
+                 android:key="sync_server"
+                 android:title="與主機同步"
+
+                  />
+
+
+
+
+
+                       <PreferenceScreen
+                           android:key="voicemail_category"
+                           android:title="Voicemail"
+                           android:persistent="false">
+
+                           <Preference
+                               android:title="Provider"
+                               android:summary="Airtel"
+                               android:key="provider" />
+
+                       </PreferenceScreen>
+
+
+    </PreferenceCategory>
+
+ -->
 
 <!--
     <CheckBoxPreference

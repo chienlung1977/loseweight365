@@ -20,10 +20,13 @@ public class SettingsFragment extends PreferenceFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
+        addPreferencesFromResource(R.xml.preferenceslist);
 
+        
+        /*
         //載入先前儲存的記錄
         SharedPreferences sp = getPreferenceScreen().getSharedPreferences();
+
         ListPreference mode =(ListPreference)findPreference("mode");
 
         String s =sp.getString("mode", getResources().getString(R.string.mode_summary));
@@ -63,6 +66,7 @@ public class SettingsFragment extends PreferenceFragment
         EditTextPreference email = (EditTextPreference)findPreference("email");
         email.setSummary(sp.getString("email",getResources().getString(R.string.email_summary)));
 
+*/
     }
 
 

@@ -18,6 +18,9 @@ public class RecordAdapter extends ArrayAdapter<Record> {
     private int resource;
     private List<Record> items;
 
+
+
+
     public RecordAdapter(Context context, int resource, List<Record> objects) {
         super(context, resource, objects);
         this.resource=resource;

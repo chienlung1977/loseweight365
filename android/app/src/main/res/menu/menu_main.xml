@@ -1,7 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+<!--
+    <item
+        android:id="@+id/action_menu_register"
+        app:showAsAction="ifRoom"
+        android:title="註冊" />
+    <item
+        android:id="@+id/action_menu_login"
+        app:showAsAction="ifRoom"
+        android:title="登入" />
 
+-->
+
+    <!--
+    <item
+        android:id="@+id/action_mymenu_test"
+        app:showAsAction="ifRoom"
+        android:title="測試"
+        app:title="@string/menu_mymenu_settings" />
+        -->
     <item
         android:id="@+id/action_mymenu_settings"
         app:showAsAction="ifRoom"
@@ -9,15 +27,35 @@
         app:title="@string/menu_mymenu_settings" />
 
     <item
+        android:id="@+id/action_mymenu_picture"
+        android:title="@string/menu_mymenu_picture"/>
+
+    <item
         android:id="@+id/action_mymenu_weight"
         android:title="@string/menu_mymenu_weight"/>
     <item
+        android:id="@+id/action_mymenu_plan"
+        android:title="目標試算"/>
+
+    <item
         android:id="@+id/action_mymenu_calory"
-        android:title="@string/menu_mymenu_calory"/>
+        android:title="@string/menu_mymenu_calory"
+
+        />
 
 
 
+    <item
+        android:id="@+id/contact_us"
+        android:title="連絡我們"/>
 
+    <item
+        android:id="@+id/action_mymenu_logout"
+        android:title="登出"/>
+
+
+
+<!--
     <item android:id="@+id/action_customer_menu"
         android:title="@string/menu_customer_menu"
         android:orderInCategory="100"
@@ -37,8 +75,23 @@
         </item>
 
         <item android:id="@+id/action_about_us"
-            android:orderInCategory="900"
-            android:title="@string/menu_about"/>
+        android:orderInCategory="900"
+        android:title="@string/menu_about"/>
+        -->
+    <!--
+    <item android:id="@+id/action_system_menu"
+        android:title="系統測試"
+        android:orderInCategory="200"
+        app:showAsAction="never" >
+        <menu>
+
+            <item android:id="@+id/action_get_api"
+                android:orderInCategory="100"
+                android:title="同步測試" />
+        </menu>
+    </item>
+
+-->
     <!--
     <item
         android:id="@+id/menu_item_share"

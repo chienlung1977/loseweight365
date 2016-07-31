@@ -23,20 +23,34 @@ public class RecordDAO {
     public static final String DATETIME_COLUMN = "CREATE_TIME";
     public static final String WEIGHT_COLUMN = "WEIGHT";
     public static final String FAT_RATE_COLUMN = "FAT_RATE";
-    //public static final String CONTENT_COLUMN = "content";
-    //public static final String FILENAME_COLUMN = "filename";
-   // public static final String LATITUDE_COLUMN = "latitude";
-   // public static final String LONGITUDE_COLUMN = "longitude";
-   // public static final String LASTMODIFY_COLUMN = "lastmodify";
+    public static final String BONE_WEIGHT_COLUMN = "BONE_WEIGHT";
+    public static final String BODY_AGE_COLUMN = "BODY_AGE";
+    public static final String INSIDE_FAT_COLUMN = "INSIDE_FAT";
+    public static final String MUSCLE_WEIGHT_COLUMN = "MUSCLE_WEIGHT";
+    public static final String MUSCLE_RATE_COLUMN = "MUSCLE_RATE";
+    public static final String METABOLISM_COLUMN = "METABOLISM";
+    public static final String PHOTO_COLUMN ="PHOTO";
 
 
     // 使用上面宣告的變數建立表格的SQL指令
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    DATETIME_COLUMN + " INTEGER NOT NULL, " +
+                    DATETIME_COLUMN + " TEXT NOT NULL, " +
                     WEIGHT_COLUMN + " REAL NOT NULL, " +
-                    FAT_RATE_COLUMN + " REAL NOT NULL)";
+                    FAT_RATE_COLUMN + " REAL NOT NULL, " +
+                    BONE_WEIGHT_COLUMN + " REAL , " +
+                    BODY_AGE_COLUMN + " REAL , " +
+                    INSIDE_FAT_COLUMN + " REAL , " +
+                    MUSCLE_WEIGHT_COLUMN + " REAL , " +
+                    MUSCLE_RATE_COLUMN + " REAL , " +
+                    METABOLISM_COLUMN + " REAL ," +
+                    PHOTO_COLUMN + " TEXT)";
+
+    public static final String DROP_TABLE ="DROP TABLE " + TABLE_NAME;
+
+    //public static final String UPGRADE_TABLE ="ALTER TABLE " + TABLE_NAME + " DROP CLUMN " + PHOTO_COLUMN + ";ALTER TABLE " + TABLE_NAME +
+      //      " ADD COLUMN " + PHOTO_COLUMN + " BLOB ;";
 
     // 資料庫物件
     private SQLiteDatabase db;
@@ -63,6 +77,14 @@ public class RecordDAO {
         cv.put(WEIGHT_COLUMN, item.getWeight());
         cv.put(FAT_RATE_COLUMN, item.getFatRate());
 
+        cv.put(BONE_WEIGHT_COLUMN, item.getBoneweight());
+        cv.put(BODY_AGE_COLUMN, item.getBodyage());
+        cv.put(INSIDE_FAT_COLUMN, item.getInsidefat());
+        cv.put(MUSCLE_WEIGHT_COLUMN, item.getMuscleweight());
+        cv.put(MUSCLE_RATE_COLUMN, item.getMusclerate());
+        cv.put(METABOLISM_COLUMN, item.getMetabolism());
+        cv.put(PHOTO_COLUMN,item.getPhoto());
+
 
         // 新增一筆資料並取得編號
         // 第一個參數是表格名稱
@@ -83,6 +105,8 @@ public class RecordDAO {
     public boolean update(Record record){
 
         ContentValues cv = new ContentValues();
+        //todo 加上更新的參數
+
        return  db.update(TABLE_NAME,cv,"_id=" + record.getId(),null)>0;
     }
 
@@ -133,12 +157,13 @@ public class RecordDAO {
         result.setCreateTime(cursor.getString(1));
         result.setWeight(cursor.getDouble(2));
         result.setFatRate(cursor.getDouble(3));
-        //result.setContent(cursor.getString(4));
-        //result.setFileName(cursor.getString(5));
-        //result.setLatitude(cursor.getDouble(6));
-        //result.setLongitude(cursor.getDouble(7));
-        //result.setLastModify(cursor.getLong(8));
-
+        result.setBoneweight(cursor.getDouble(4));
+        result.setBodyage(cursor.getDouble(5));
+        result.setInsidefat(cursor.getDouble(6));
+        result.setMuscleweight(cursor.getDouble(7));
+        result.setMusclerate(cursor.getDouble(8));
+        result.setMetabolism(cursor.getDouble(9));
+        result.setPhoto(cursor.getString(10));
         // 回傳結果
         return result;
     }

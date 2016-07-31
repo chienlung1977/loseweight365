@@ -11,4 +11,24 @@
         <item>F</item>
     </string-array>
 
+    <!--活動係數-->
+    <string-array name="sys_opts_day_life_item">
+        <item>躺著不動一整天</item>
+        <item>幾乎很少或沒運動</item>
+        <item>每週運動1-2次</item>
+        <item>每週運動3-5次</item>
+        <item>每週運動6-7次</item>
+        <item>每天重度運動或重勞力工作者</item>
+    </string-array>
+
+    <string-array name="sys_opts_day_life_value">
+        <item>1</item>
+        <item>1.2</item>
+        <item>1.375</item>
+        <item>1.55</item>
+        <item>1.725</item>
+        <item>1.9</item>
+    </string-array>
+
+    <string name="sys_opts_day_life_default_value">1.2</string>
 </resources>

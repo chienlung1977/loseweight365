@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION=2;
-    public static final String DATABASE_NAME="ncDb.db";
+    public static final int DATABASE_VERSION=7;
+    public static final String DATABASE_NAME="nc.db";
     public static SQLiteDatabase database;
 
 
@@ -39,9 +39,13 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + RecordDAO.TABLE_NAME);
+
+        if(oldVersion==6){
+            db.execSQL(PictureDAO.CREATE_TABLE);
+        }
+        //db.execSQL(RecordDAO.DROP_TABLE);
         // 呼叫onCreate建立新版的表格
-        onCreate(db);
+        //onCreate(db);
        // db.execSQL(CustomerController.SQL_DELETE_ENTRIES);
        // db.execSQL(BodyRecordController.SQL_DELETE_ENTRIES);
         //onCreate(db);

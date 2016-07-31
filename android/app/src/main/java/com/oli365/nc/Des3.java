@@ -14,9 +14,12 @@ import javax.crypto.spec.IvParameterSpec;
 /**
  * 3DES加密工具類
  */
-public class Des3 {
+public  class Des3 {
+
+
+
     // 密鑰
-    //private final static String secretKey = "liuyunqiang@lx100$#365#$";
+
     private final static String secretKey = "chienlung1977@lx100$#365#$";
 
     // 向量
@@ -31,6 +34,7 @@ public class Des3 {
      * @return
      * @throws Exception
      */
+
     public static String encode(String plainText) throws Exception {
         Key deskey = null;
         DESedeKeySpec spec = new DESedeKeySpec(secretKey.getBytes());
@@ -44,6 +48,7 @@ public class Des3 {
         return Base64.encode(encryptData);
     }
 
+
     /**
      * 3DES解密
      *
@@ -51,9 +56,11 @@ public class Des3 {
      * @return
      * @throws Exception
      */
+
     public static String decode(String encryptText) throws Exception {
         Key deskey = null;
         DESedeKeySpec spec = new DESedeKeySpec(secretKey.getBytes());
+        //SecretKeyFactory keyfactory = SecretKeyFactory.getInstance("desede");
         SecretKeyFactory keyfactory = SecretKeyFactory.getInstance("desede");
         deskey = keyfactory.generateSecret(spec);
         Cipher cipher = Cipher.getInstance("desede/CBC/PKCS5Padding");
@@ -64,6 +71,15 @@ public class Des3 {
 
         return new String(decryptData, encoding);
     }
+
+
+
+
+
+
+
+
+
 }
 
 
