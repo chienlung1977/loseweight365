@@ -13,6 +13,7 @@
         android:paddingRight="10dip"
         android:paddingTop="10dip"
         android:paddingBottom="10dip"
+        android:textSize="18dp"
         android:layout_weight="0.5"
         />
 
@@ -22,8 +23,8 @@
         android:id="@+id/txtCalory"
         android:layout_width="0dp"
         android:layout_weight="0.5"
+        android:textSize="18dp"
         android:layout_height="wrap_content"
-        android:onClick="showCaloryView"
         android:clickable="true"
 
         />

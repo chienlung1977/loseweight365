@@ -96,4 +96,25 @@
     <string name="body_picture_btn_select">確定</string>
 
     <!--===================body picture end ============-->
+
+
+    <!--==================COMMON =================-->
+    <string name="btnSubmit" >確定</string>
+    <string name="btnCalcel">取消</string>
+    <string name="btnAdd">新增</string>
+    <string name="btnEdit">修改</string>
+    <string name="btnDelete">修改</string>
+    <string name="btnUpload">上傳</string>
+
+    <!--====================CALORY=================-->
+
+    <string name="calory_breakfast">早餐</string>
+    <string name="calory_lunch">午餐</string>
+    <string name="calory_dinner">晚餐</string>
+    <string name="calory_refreshment">點心</string>
+    <string name="calory_sport">運動</string>
+    <string name="calory_query">快查</string>
+
+    <string name="calory_hint">請輸入卡路里</string>
+    <string name="calory_remark">請輸入備註</string>
 </resources>

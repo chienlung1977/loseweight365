@@ -26,10 +26,11 @@ public class SettingsActivity extends PreferenceActivity
 
     private String _period ;
 
-    private static final String TAG = "SettingsActivity.tag";
+    private static final String TAG = SettingsActivity.class.getName();
 
     private String shortTargetDate;
     private String targetDate;
+    private String targetStartDate;
     SharedPreferences sp ;
 
     private void initData(){
@@ -42,6 +43,7 @@ public class SettingsActivity extends PreferenceActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
+
 
         //初始化預設資料
         initData();
@@ -154,6 +156,16 @@ public class SettingsActivity extends PreferenceActivity
             sys_short_target_date.setSummary(((EditTextPreference) sys_short_target_date).getText());
         }
 */
+        Preference sys_target_start_date = findPreference("sys_target_start_date");
+        targetStartDate = sp.getString("sys_target_start_date","");
+        //空值就設今天日期
+        if(targetStartDate.equals("")){
+            final Calendar c = Calendar.getInstance();
+            Date d =c.getTime();
+            SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd");
+            targetStartDate= sdf.format(d);
+        }
+
         Preference sys_target_weight_date =findPreference("sys_target_weight_date");
         targetDate = sp.getString("sys_target_weight_date","");
         //空值就設定長期1年
@@ -168,6 +180,18 @@ public class SettingsActivity extends PreferenceActivity
         }
 
 
+        if(sys_target_start_date instanceof Preference && !targetStartDate.equals("")){
+            sys_target_start_date.setSummary(targetStartDate);
+        }
+        sys_target_start_date.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+
+                showDateDialog(0,targetStartDate);
+                return false;
+            }
+        });
         Log.i(TAG,"targetDate=" + targetDate);
         if(sys_target_weight_date instanceof Preference && targetDate!=""){
             sys_target_weight_date.setSummary(targetDate);
@@ -197,11 +221,11 @@ public class SettingsActivity extends PreferenceActivity
         //do some stuff for example write on log and update TextField on activity
         //短期
         if(_period=="0"){
-            String shortDate = String.valueOf(year) + "/" + String.valueOf(month+1) + "/" + String.valueOf(day);
-            Preference sys_short_target_date =findPreference("sys_short_target_date");
-            sys_short_target_date.setSummary(shortDate);
-            editor.putString("sys_short_target_date", shortDate);
-            Log.i(TAG, "update targetDate=" + shortDate);
+            String targetStartDate = String.valueOf(year) + "/" + String.valueOf(month+1) + "/" + String.valueOf(day);
+            Preference sys_target_start_date =findPreference("sys_target_start_date");
+            sys_target_start_date.setSummary(targetStartDate);
+            editor.putString("sys_target_start_date", targetStartDate);
+            Log.i(TAG, "update sys_target_start_date=" + targetStartDate);
         }
         else if(_period=="1"){
             String longDate =String.valueOf(year) + "/" + String.valueOf(month+1) + "/" + String.valueOf(day);

@@ -30,6 +30,8 @@ public class RecordDAO {
     public static final String MUSCLE_RATE_COLUMN = "MUSCLE_RATE";
     public static final String METABOLISM_COLUMN = "METABOLISM";
     public static final String PHOTO_COLUMN ="PHOTO";
+    public static final String UPLOAD_COLUMN ="UPLOAD";
+    public static final String STATUS_COLUMN ="STATUS";
 
 
     // 使用上面宣告的變數建立表格的SQL指令
@@ -45,12 +47,16 @@ public class RecordDAO {
                     MUSCLE_WEIGHT_COLUMN + " REAL , " +
                     MUSCLE_RATE_COLUMN + " REAL , " +
                     METABOLISM_COLUMN + " REAL ," +
-                    PHOTO_COLUMN + " TEXT)";
+                    PHOTO_COLUMN + " TEXT ," +
+                    UPLOAD_COLUMN + " TEXT DEFAULT '0' , " +
+                    STATUS_COLUMN + " TEXT DEFAULT '1' )";
 
     public static final String DROP_TABLE ="DROP TABLE " + TABLE_NAME;
 
-    //public static final String UPGRADE_TABLE ="ALTER TABLE " + TABLE_NAME + " DROP CLUMN " + PHOTO_COLUMN + ";ALTER TABLE " + TABLE_NAME +
-      //      " ADD COLUMN " + PHOTO_COLUMN + " BLOB ;";
+    //版本7-->8
+    public static final String UPGRADE_TABLE =
+                    " ALTER TABLE " + TABLE_NAME + " ADD CLUMN " + UPLOAD_COLUMN + " TEXT DEFAULT '0'" +
+                    ";ALTER TABLE " + TABLE_NAME + " ADD COLUMN " + STATUS_COLUMN + " TEXT DEFAULT '1' ";
 
     // 資料庫物件
     private SQLiteDatabase db;
@@ -99,13 +105,15 @@ public class RecordDAO {
     }
 
     public boolean delete(long id ){
+
+        //todo v1.07修改為update status =0 (刪除)，同步後才用服務刪除，或upload=1 and status=0才刪除
         return db.delete(TABLE_NAME,"_id=" + id,null)>0;
     }
 
     public boolean update(Record record){
 
         ContentValues cv = new ContentValues();
-        //todo 加上更新的參數
+        //加上更新的參數
 
        return  db.update(TABLE_NAME,cv,"_id=" + record.getId(),null)>0;
     }
@@ -114,8 +122,13 @@ public class RecordDAO {
     // 讀取所有記事資料
     public List<Record> getAll() {
         List<Record> result = new ArrayList<Record>();
+
+        String whereClause = " STATUS = ? ";
+        String[] whereArgs = new String[] {
+                "1"
+        };
         Cursor cursor = db.query(
-                TABLE_NAME, null, null, null, null, null, null, null);
+                TABLE_NAME, null, whereClause, whereArgs, null, null, null, null);
 
         while (cursor.moveToNext()) {
             result.add(getRecord(cursor));

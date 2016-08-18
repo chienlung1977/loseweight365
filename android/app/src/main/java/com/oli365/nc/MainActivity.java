@@ -7,18 +7,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private ShareActionProvider mShareActionProvider;
-
+    private static final String TAG =MainActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
         //String login = Utility.getKeyValue(this,"IS_LOGIN");
        // Toast.makeText(this,"MAIN isLogin=" + Utility.getKeyValue(this,"IS_LOGIN") , Toast.LENGTH_SHORT).show();
+
+        //測試訂閱功能
+        Button btnSubscription =(Button)findViewById(R.id.btnSubscription);
+        btnSubscription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // FirebaseMessaging.getInstance().subscribeToTopic("news");
+            }
+        });
+
 
         checkLogin();
 
@@ -242,5 +256,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = getIntent();
+        String msg = intent.getStringExtra("msg");
+        if (msg!=null)
+            Log.d(TAG, "FCM msg:"+msg);
+    }
 
 }

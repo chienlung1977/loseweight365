@@ -78,6 +78,14 @@
             android:title="@string/sys_target_weight"
             />
 
+
+        <Preference
+            android:key="sys_target_start_date"
+            android:inputType="date"
+            android:title="目標開始日期"
+            />
+
+
         <Preference
             android:key="sys_target_weight_date"
             android:inputType="date"

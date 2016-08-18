@@ -1,0 +1,197 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.oli365.nc.FragmentCaloryNew">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="0,1,2,3"
+            >
+
+            <!--早餐-->
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="@string/calory_breakfast" />
+                <TextView
+                    android:id="@+id/calory_tv_breakfast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_span="2"
+                     />
+
+                <Button
+                    android:id="@+id/calory_btn_breakfast_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnAdd"
+                    />
+            </TableRow>
+            <!--中餐-->
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="@string/calory_lunch" />
+                <TextView
+                    android:id="@+id/calory_tv_lunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_span="2"
+                    />
+
+                <Button
+                    android:id="@+id/calory_btn_lunch_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnAdd"
+                    />
+            </TableRow>
+            <!--晚餐-->
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="@string/calory_dinner" />
+                <TextView
+                    android:id="@+id/calory_tv_dinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_span="2"
+                    />
+
+                <Button
+                    android:id="@+id/calory_btn_dinner_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnAdd"
+                    />
+            </TableRow>
+
+            <!--點心-->
+            <TableRow>
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="@string/calory_refreshment" />
+                <TextView
+                    android:id="@+id/calory_tv_refreshment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_span="2"
+                    />
+
+                <Button
+                    android:id="@+id/calory_btn_refreshment_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnAdd"
+                    />
+            </TableRow>
+
+            <TableRow>
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_span="4"
+                    >
+
+                </ListView>
+
+            </TableRow>
+
+            <!--運動-->
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="@string/calory_sport" />
+                <TextView
+                    android:id="@+id/calory_tv_sport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_span="2"
+                    />
+
+                <Button
+                    android:id="@+id/calory_btn_sport_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnAdd"
+                    />
+            </TableRow>
+
+            <TableRow>
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="4"
+                    >
+
+                </ListView>
+
+            </TableRow>
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/calory_et_memo"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:minLines="6"
+                    android:gravity="top|left"
+                    android:maxLines="10"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                     android:scrollbars="vertical"
+                    android:layout_span="4"
+                    />
+
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnCalcel"
+                    android:layout_span="2"
+
+                    />
+                <Button
+                    android:id="@+id/btnOK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnSubmit"
+                    android:layout_span="2"
+                    />
+            </TableRow>
+
+
+        </TableLayout>
+
+    </ScrollView>
+
+</FrameLayout>

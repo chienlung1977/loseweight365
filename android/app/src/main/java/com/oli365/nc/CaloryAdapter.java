@@ -17,7 +17,7 @@ public class CaloryAdapter extends ArrayAdapter<Calory>  {
 
     private int resource;
     private List<Calory> items;
-    private static final String TAG="CaloryAdapter";
+    private static final String TAG= CaloryAdapter.class.getName();
 
     public CaloryAdapter(Context context,  List<Calory> calorys) {
         super(context, 0, calorys);

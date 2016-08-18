@@ -42,6 +42,25 @@
             android:textSize="14pt"
             android:text="脂肪重量"
             />
+
+        <TextView
+            android:id="@+id/fat_lose_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textSize="14pt"
+            android:text="減去脂肪量"
+            />
+
+        <TextView
+            android:id="@+id/fat_lose_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textSize="14pt"
+            android:text="脂肪重量"
+            />
+
         <TextView
             android:id="@+id/consum_weight"
             android:layout_width="wrap_content"

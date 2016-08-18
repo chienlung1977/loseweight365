@@ -1,21 +1,12 @@
 package com.oli365.nc;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 public class CaloryMain extends AppCompatActivity {
 
-    private static final String TAG="CaloryMain";
+    private static final String TAG= CaloryMain.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +14,31 @@ public class CaloryMain extends AppCompatActivity {
         setContentView(R.layout.activity_calory_main);
 
 
-        //初始fragment終
-        if (savedInstanceState == null) {
-            Fragment newFragment = new Calory_Main_Fragment();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.add(android.R.id.content, newFragment).commit();
+        if (findViewById(R.id.fg_calory_content) != null) {
+            if(savedInstanceState!=null){
+                return ;
+            }
+            CaloryMainFragment fg  = new CaloryMainFragment();
+            fg.setArguments(getIntent().getExtras());
+            getFragmentManager().beginTransaction()
+                    .add(R.id.fg_calory_content, fg).commit();
+
         }
 
-        bindingData();
+        //初始fragment
+        /*
+        if (savedInstanceState == null) {
+            CaloryMainFragment newFragment = new CaloryMainFragment();
+            FragmentTransaction ft = getSupportFragmentManager().get();
+            ft.replace(R.id.fg_calory_content, newFragment,"testfragment").commit();
+
+        }
+
+*/
+       //bindingData();
     }
 
+    /*
     public static class Calory_Main_Fragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,14 +48,17 @@ public class CaloryMain extends AppCompatActivity {
            // return v;
             return inflater.inflate(R.layout.fragment_calory_main, container, false);
         }
+
+
     }
+*/
 
-
+    /*
     private void bindingData(){
 
         ArrayList<Calory> items =new ArrayList<Calory>();
 
-        //todo 此處要取得calory清單，後加入arraylist
+
 
         Calory c =null;
 
@@ -62,32 +71,17 @@ public class CaloryMain extends AppCompatActivity {
 
 
 
+        Fragment fg = (Calory_Main_Fragment)getFragmentManager().findFragmentByTag("testfragment");
+        LinearLayout ll = (LinearLayout) fg.getView().findViewById(R.id.ll_calory_main);
         CaloryAdapter itemAdapter =new CaloryAdapter(this, items);
-        ListView listView = (ListView) findViewById(R.id.caloryList);
-        listView.setAdapter(itemAdapter);
+       // Log.i(TAG,getFragmentManager().findFragmentById(R.id.fg_calory_main));
+        ListView listView = (ListView) ll.findViewById(R.id.caloryList);
+
+       // listView.setAdapter(itemAdapter);
 
     }
+*/
 
-    public void showCaloryView(View v){
-        //todo 須要使用fragment切換到當日卡路里
-
-
-        FragmentManager fragmentMgr = getFragmentManager();
-        android.app.Fragment fgClaoryNew =new FragmentCaloryNew();
-       // android.app.Fragment fgClaoryNew =fragmentMgr.findFragmentById(R.id.fg_calory_main) ;
-        FragmentTransaction fragmentTrans = fragmentMgr.beginTransaction();
-        fragmentTrans.add(R.id.fg_calory_main,fgClaoryNew);
-        fragmentTrans.addToBackStack(null);
-        //fragmentTrans.replace(R.id.frameLay, myFragmentB, "My fragment B");
-
-        fragmentTrans.commit();
-        fragmentMgr.executePendingTransactions();
-        //TextView txtDate = (TextView) v.findViewById(R.id.txtDate);
-
-
-        //Log.i(TAG, "click :" + txtDate.getText());
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

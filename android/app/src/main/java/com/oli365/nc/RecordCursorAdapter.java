@@ -82,22 +82,22 @@ public class RecordCursorAdapter extends CursorAdapter {
         createTime = Utility.getShortDate(createTime);  //去掉秒數
         double weight =cursor.getDouble(cursor.getColumnIndexOrThrow("WEIGHT"));
         double fatrate =cursor.getDouble(cursor.getColumnIndexOrThrow("FAT_RATE"));
-        int metabolism =cursor.getInt(cursor.getColumnIndexOrThrow("METABOLISM"));
-        int bodyAge = cursor.getInt(cursor.getColumnIndexOrThrow("BODY_AGE"));
+        double metabolism =cursor.getInt(cursor.getColumnIndexOrThrow("METABOLISM"));
+        double bodyAge = cursor.getInt(cursor.getColumnIndexOrThrow("BODY_AGE"));
         double boneWeight = cursor.getDouble(cursor.getColumnIndexOrThrow("BONE_WEIGHT"));
         double insideFat = cursor.getDouble(cursor.getColumnIndexOrThrow("INSIDE_FAT"));
         double muscleWeight =  cursor.getDouble(cursor.getColumnIndexOrThrow("MUSCLE_WEIGHT"));
-        int muscleRate =  cursor.getInt(cursor.getColumnIndexOrThrow("MUSCLE_RATE"));
+        double muscleRate =  cursor.getInt(cursor.getColumnIndexOrThrow("MUSCLE_RATE"));    //體水分
         String photo = cursor.getString(cursor.getColumnIndexOrThrow("PHOTO"));
 
         double weightdiff =0;
         double fatratediff =0;
-        int metabolismdiff =0;
-        int bodyagediff=0;
+        double metabolismdiff =0;
+        double bodyagediff=0;
         double boneweightdiff=0;
         double insidefatdiff =0;
         double muscleweightdiff =0;
-        int muscleratediff =0 ;
+        double muscleratediff =0 ;  //變體水份
 
 
         //與下一筆的差異

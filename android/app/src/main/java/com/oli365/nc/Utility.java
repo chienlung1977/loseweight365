@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -39,9 +40,12 @@ import java.util.regex.Pattern;
  */
 public  class Utility {
 
-    private static final String TAG="Utility";
+    private static final String TAG= Utility.class.getName();
     //當作KEY用
     private static final String PRIMARY_KEY ="nc.oli365.com";
+
+    //登出到期的小時數
+    private static final int EXPIRE_HOURS = 10;
 
     //取得金鑰共20碼，主機只取前14碼
     public static String getKey(String baseKey){
@@ -96,17 +100,35 @@ public  class Utility {
         return hostUrl;
     }
 
-    //取得簡短日期
+    //取得日期
     public static String getShortDate(String mydate){
 
         String dateString="";
         try{
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             Date _date = sdf.parse(mydate);
             dateString = sdf.format(_date);
 
         }catch (Exception ex){
-            Log.e("Utility", "getShortDate: error ");
+            Log.e("Utility", "getShortDate error :" + ex.getMessage());
+        }
+
+        return dateString;
+    }
+
+    //取得現在日期時間
+    public static String getToday(){
+        String dateString="";
+        try{
+            final Calendar c = Calendar.getInstance();
+            Date d =c.getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //Date _date = sdf.parse(new Date().toString());
+            dateString = sdf.format(d);
+
+        }catch (Exception ex){
+            Log.e(TAG, "getToday error : " + ex.getMessage());
         }
 
         return dateString;
@@ -117,12 +139,16 @@ public  class Utility {
 
         String dateString="";
         try{
+
+            final Calendar c = Calendar.getInstance();
+            Date d =c.getTime();
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
-            Date _date = sdf.parse(new Date().toString());
-            dateString = sdf.format(_date);
+            //Date _date = sdf.parse(new Date().toString());
+            dateString = sdf.format(d);
 
         }catch (Exception ex){
-            Log.e("Utility", "getShortDate: error ");
+            Log.e(TAG, "getDateString error :" + ex.getMessage());
         }
 
         return dateString;
@@ -179,8 +205,8 @@ public  class Utility {
 
             if(isLogin==true ){
                 putKeyValue(context,"IS_LOGIN","YES");
-                //到期時間為10小時後
-                cal.add(Calendar.HOUR_OF_DAY, 10);
+                //到期時間
+                cal.add(Calendar.HOUR_OF_DAY, EXPIRE_HOURS);
             }
             else{
                 putKeyValue(context,"IS_LOGIN","NO");
@@ -223,7 +249,13 @@ public  class Utility {
                 return false;
             }
 
-            //都通過則回傳true
+            //都通過則回傳true，並將到期時間往後推10個小時，就不用一直登入
+            Calendar cal = Calendar.getInstance();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            cal.add(Calendar.HOUR_OF_DAY, EXPIRE_HOURS);
+            String dateTime  = dateFormat.format(cal.getTime());
+            putKeyValue(context,"LOGIN_DATE",dateTime);
+
 
         }catch (Exception ex ){
 
@@ -235,23 +267,33 @@ public  class Utility {
 
     public static void Logout(Context context){
 
+        Log.i(TAG,"Logout start !");
+
+        LogoutTask lt = new LogoutTask(context);
+        lt.execute();
+
+        Log.i(TAG,"Logout end !");
+
+        /*
         InputStream inputStream = null;
-        HttpURLConnection urlConnection = null;
+
 
         try{
-            //todo 以下要補送到伺服器的資料
+
+            //送到伺服器的登出記錄
             String hostUrl =  getHostUrl(context,"/users/logout");
             String userid = getUserUid(context);
             JsonObject json = new JsonObject();
             json.addProperty("uid", userid);
 
             URL url =new URL(hostUrl);
-            urlConnection = (HttpURLConnection) url.openConnection();
+            final HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             urlConnection.setRequestProperty("Accept", "application/json");
             //dto.setCreator(java.net.URLEncoder.encode(dto.getCreator(), "utf-8"));
             urlConnection.setRequestMethod("POST");
             urlConnection.setDoOutput(true);
+
             DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
             wr.writeBytes(json.toString());
             wr.flush();
@@ -260,11 +302,14 @@ public  class Utility {
             if(statusCode==200){
                 inputStream = new BufferedInputStream(urlConnection.getInputStream());
                 String response = getStringFromInputStream(inputStream);
-                Log.i("utility print",response);
+                Log.i(TAG,response);
             }
+
+
+
         }
         catch(Exception ex){
-            Log.e("utility error",ex.toString());
+            Log.e(TAG,ex.toString());
         }
 
 
@@ -275,7 +320,92 @@ public  class Utility {
         putKeyValue(context,"LOGIN_DATE","");
         putKeyValue(context,"USER_UID","");
 
+        */
+
     }
+
+
+    //加開執行緒執行登出
+    private static class LogoutTask extends AsyncTask<Void, Void, Boolean> {
+
+        Context context ;
+
+
+        public LogoutTask(Context main_context){
+
+            Log.i(TAG,"LogoutTask init !");
+            this.context =main_context;
+        }
+
+        protected Boolean doInBackground(Void... params) {
+
+            Log.i(TAG,"LogoutTask doInBackground !");
+            InputStream inputStream = null;
+
+
+            try{
+
+                //送到伺服器的登出記錄
+                String hostUrl =  getHostUrl(context,"users/logout");
+                Log.i(TAG,"Post to url : " + hostUrl);
+                String userid = getUserUid(context);
+                String email = getUserEmail(context);
+                Log.i(TAG,"json data userid : " + userid + ", email : " + email);
+                JsonObject json = new JsonObject();
+                json.addProperty("uid", userid);
+                json.addProperty("email", email);
+
+                URL url =new URL(hostUrl);
+                final HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                urlConnection.setRequestProperty("Accept", "application/json");
+                //dto.setCreator(java.net.URLEncoder.encode(dto.getCreator(), "utf-8"));
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoOutput(true);
+                Log.i(TAG,"LogoutTask doInBackground - POST!");
+                DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+                wr.writeBytes(json.toString());
+                wr.flush();
+                wr.close();
+
+                int statusCode = urlConnection.getResponseCode();
+                Log.i(TAG,"LogoutTask doInBackground - statusCode = " + statusCode + " !");
+                if(statusCode==200){
+                    inputStream = new BufferedInputStream(urlConnection.getInputStream());
+                    String response = getStringFromInputStream(inputStream);
+                    Log.i(TAG,response);
+                }
+
+
+
+            }
+            catch(Exception ex){
+                Log.e(TAG,"LogoutTask doInBackground - error :" + ex.toString());
+            }
+
+
+            //清空記錄
+            putKeyValue(context,"IS_LOGIN","");
+            putKeyValue(context,"LOGIN_DATE","");
+            putKeyValue(context,"USER_UID","");
+
+
+            return true;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            //setProgressPercent(progress[0]);
+        }
+
+        protected void onPostExecute(Boolean result) {
+
+            Log.i(TAG,"LogoutTask onPostExecute !");
+            //showDialog("Downloaded " + result + " bytes");
+        }
+    }
+
+
+
 
 
     public static void showMessage(Context context,String msg){
@@ -342,6 +472,23 @@ public  class Utility {
         String shortTargetDate= sdf.format(d);
         return shortTargetDate;
     }
+
+    //格式化成簡短日期
+    public static String getFormatShortDate(String dateString){
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd");
+        Date mydate =null;
+        try{
+            mydate = sdf.parse(dateString);
+
+        }
+        catch (ParseException ex){
+           Log.e(TAG,"getFormatShortDate error:" + ex.getMessage());
+        }
+        return sdf.format(dateString);
+
+    }
+
+
 
 
 

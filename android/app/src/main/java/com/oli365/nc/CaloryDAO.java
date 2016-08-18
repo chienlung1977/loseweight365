@@ -109,6 +109,24 @@ public class CaloryDAO {
         return result;
     }
 
+    //取得今天往前推30天的記錄
+    public List<Calory> getLatest30(){
+
+        List<Calory> result = new ArrayList<Calory>();
+
+        //Log.i(TAG,)
+        String sql ="SELECT * FROM " + TABLE_NAME + " WHERE CREATE_TIME>date('now','-30 day') ORDER BY CREATE_TIME DESC";
+        Cursor cursor = db.rawQuery(sql,null);
+
+        while (cursor.moveToNext()) {
+            result.add(getCalory(cursor));
+        }
+
+        cursor.close();
+        return result;
+
+    }
+
     // 取得指定編號的資料物件
     public Calory get(long id) {
         // 準備回傳結果用的物件
