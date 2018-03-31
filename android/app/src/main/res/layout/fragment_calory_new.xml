@@ -12,95 +12,167 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:stretchColumns="0,1,2,3"
+            android:stretchColumns="0,1"
             >
+
+            <TableRow>
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_weight="0.25"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="可用卡路里"
+                    />
+                <TextView
+                    android:id="@+id/txtDailyCalory"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.75"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+
+                    />
+            </TableRow>
+
 
             <!--早餐-->
             <TableRow>
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:text="@string/calory_breakfast" />
                 <TextView
                     android:id="@+id/calory_tv_breakfast"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:layout_span="2"
+
                      />
+
+
+
+                <Button
+                    android:id="@+id/btn_calory_private_breakfast"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnPrivate"
+                    />
 
                 <Button
                     android:id="@+id/calory_btn_breakfast_add"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
-                    android:text="@string/btnAdd"
+                    android:text="@string/btnView"
                     />
             </TableRow>
             <!--中餐-->
             <TableRow>
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:text="@string/calory_lunch" />
                 <TextView
                     android:id="@+id/calory_tv_lunch"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:layout_span="2"
+
+                    />
+
+
+
+                <Button
+                    android:id="@+id/btn_calory_private_lunch"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnPrivate"
                     />
 
                 <Button
                     android:id="@+id/calory_btn_lunch_add"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
-                    android:text="@string/btnAdd"
+                    android:text="@string/btnView"
                     />
             </TableRow>
             <!--晚餐-->
             <TableRow>
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:textSize="16dp"
                     android:text="@string/calory_dinner" />
                 <TextView
                     android:id="@+id/calory_tv_dinner"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:layout_span="2"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/btn_calory_private_dinner"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnPrivate"
                     />
 
                 <Button
                     android:id="@+id/calory_btn_dinner_add"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
-                    android:text="@string/btnAdd"
+                    android:text="@string/btnView"
                     />
+
             </TableRow>
 
             <!--點心-->
             <TableRow>
                 <TextView
 
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:textSize="16dp"
                     android:text="@string/calory_refreshment" />
                 <TextView
                     android:id="@+id/calory_tv_refreshment"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:layout_span="2"
+
+                    />
+
+
+
+                <Button
+                    android:id="@+id/btn_calory_private_refreshment"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnPrivate"
                     />
 
                 <Button
                     android:id="@+id/calory_btn_refreshment_add"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:text="@string/btnAdd"
                     />
@@ -112,7 +184,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:layout_span="4"
+                    android:layout_span="2"
                     >
 
                 </ListView>
@@ -122,21 +194,33 @@
             <!--運動-->
             <TableRow>
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
+                    android:layout_weight="0.5"
                     android:text="@string/calory_sport" />
                 <TextView
                     android:id="@+id/calory_tv_sport"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:layout_span="2"
+                    android:layout_weight="0.5"
+                    />
+
+
+
+                <Button
+                    android:id="@+id/btn_calory_private_sport"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnPrivate"
                     />
 
                 <Button
                     android:id="@+id/calory_btn_sport_add"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:text="@string/btnAdd"
                     />
@@ -147,7 +231,7 @@
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_span="4"
+                    android:layout_span="2"
                     >
 
                 </ListView>
@@ -165,10 +249,56 @@
                     android:layout_height="wrap_content"
                     android:layout_width="fill_parent"
                      android:scrollbars="vertical"
-                    android:layout_span="4"
+                    android:layout_span="2"
                     />
 
             </TableRow>
+
+            <TableRow>
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_weight="0.25"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="剩餘"
+                    />
+                <TextView
+                    android:id="@+id/txtRemainingCalory"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.25"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+
+                    />
+                <Button
+                    android:id="@+id/btnRecountingCalory"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:text="計算"
+                    />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/btn_food_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="新增常用"
+
+
+                    />
+                <Button
+                    android:id="@+id/btn_food_server_load"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="主機帶入"
+
+                    />
+            </TableRow>
+
 
             <TableRow>
 
@@ -177,7 +307,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/btnCalcel"
-                    android:layout_span="2"
+
 
                     />
                 <Button
@@ -185,7 +315,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/btnSubmit"
-                    android:layout_span="2"
+
                     />
             </TableRow>
 

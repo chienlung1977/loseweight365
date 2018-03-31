@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityRecordAdd">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        >
+
+
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="0,1"
+            >
+            <TableRow>
+                <TextView
+                    android:id="@+id/txtCreateTime"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:textSize="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="日期"
+                    android:layout_span="2"
+                    />
+            </TableRow>
+            <TableRow>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="請輸入本次體重"
+                        />
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_fatrate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtFatRate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="請輸入本次體脂"
+                        />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+
+            <TableRow>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_insidefat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtInsideFat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="請輸入本次內臟脂肪"
+                        />
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_muscleweight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtMuscleWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="請輸入本次肌肉量"
+                        />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+
+            <TableRow>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_boneweight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtBoneWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="請輸入本次骨量"
+                        />
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_metabolism"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtMetabolism"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="請輸入本次基礎代謝率"
+                        />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+
+            <TableRow>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_bodyage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtBodyAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="請輸入本次身體年齡"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_bodywater"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtMuscleRate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="請輸入本次身體水份"
+                        />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+            <TableRow>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtrecordmemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="備註內容"
+                        />
+                </android.support.design.widget.TextInputLayout>
+                <Button
+                    android:id="@+id/btnMemoSel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="選擇片語"
+                    />
+                <Button
+                    android:id="@+id/btnMemoAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="新增片語"
+                    />
+                <Button
+                    android:id="@+id/btnMemoDel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="刪除片語"
+                    />
+            </TableRow>
+            <TableRow>
+
+                <ImageView
+                    android:id="@+id/imgLosePic"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="100dp"
+                    android:maxHeight="100dp"
+                    android:layout_span="2"
+                    />
+            </TableRow>
+            <TableRow>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="pickPic"
+                        android:text="選擇照片"
+                        />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="takePic"
+                        android:text="拍照紀念"
+                        />
+
+            </TableRow>
+
+            <TableRow>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="取消"
+                        android:id="@+id/btnCancel"
+                        android:onClick="closeView"/>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="儲存"
+                        android:id="@+id/btnSave"
+                        android:onClick="saveData"
+                        />
+
+
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

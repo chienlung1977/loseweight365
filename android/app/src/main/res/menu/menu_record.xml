@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".ActivityRecordMain"
+    >
+    <item
+        android:id="@+id/btnAdd"
+        app:showAsAction="ifRoom"
+        android:title="新增"
+        app:title="新增" />
+
+    <item
+        android:id="@+id/btnView"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:title="分段檢視"
+        >
+        <menu>
+            <item
+                android:id="@+id/btnView_All"
+                android:title="全部"/>
+            <item
+                android:id="@+id/btnView_Today"
+                android:title="今日"/>
+            <item
+                android:id="@+id/btnView_1"
+                android:title="6:00~12:00"/>
+            <item
+                android:id="@+id/btnView_2"
+                android:title="12:00~18:00"/>
+            <item
+                android:id="@+id/btnView_3"
+                android:title="18:00~24:00"/>
+            <item
+                android:id="@+id/btnView_4"
+                android:title="00:00~06:00"/>
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,164 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.oli365.nc.FragmentFoodNew">
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TableLayout
+        android:id="@+id/tb_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="0,1"
+        >
+        <TableRow>
+            <TextView
+                android:id="@+id/tv_main_type"
+                android:layout_width="match_parent"
+                android:layout_span="2"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                />
+        </TableRow>
+        <TableRow>
+            <ImageView
+                android:id="@+id/iv_food_pic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                />
+            <Button
+                android:id="@+id/btnTakePic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/btnTakePic"
+
+                />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tv_food_type"
+                android:layout_width="0dp"
+                android:layout_weight="0.75"
+                android:layout_height="wrap_content"
+                />
+            <!--
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.75"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edt_food_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/hint_food_type"
+
+                    />
+            </android.support.design.widget.TextInputLayout>
+-->
+            <Button
+                android:id="@+id/btnFoodType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/btnPrivate"
+
+                />
+        </TableRow>
+
+        <TableRow>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_span="2"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edt_food_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/hint_food_name"
+
+                    />
+            </android.support.design.widget.TextInputLayout>
+<!--
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/btnQuery"
+
+                />
+                -->
+        </TableRow>
+
+        <TableRow>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+               >
+                <EditText
+                    android:id="@+id/edt_food_calory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="@string/hint_food_calory"
+
+                    />
+
+
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                >
+                <EditText
+                    android:id="@+id/et_food_perunit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+
+                    android:hint="@string/hint_food_perunit"
+
+                    />
+            </android.support.design.widget.TextInputLayout>
+        </TableRow>
+
+
+        <TableRow>
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="結束"
+
+                />
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="新增"
+
+                />
+        </TableRow>
+
+    </TableLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>

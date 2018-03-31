@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <item
+        android:id="@+id/menu_food_goback"
+        app:showAsAction="ifRoom"
+        android:title="返回"
+        />
+    <item
+        android:id="@+id/menu_food_new"
+        app:showAsAction="ifRoom"
+        android:title="新增"
+        />
+
+</menu>

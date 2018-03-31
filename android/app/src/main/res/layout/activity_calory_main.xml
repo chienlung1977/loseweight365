@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.oli365.nc.CaloryMain">
+    tools:context="com.oli365.nc.ActivityCaloryMain">
 
     <FrameLayout
         android:id="@+id/fg_calory_content"

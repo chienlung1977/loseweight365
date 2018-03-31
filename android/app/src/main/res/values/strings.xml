@@ -1,18 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <string name="app_name">活力365</string>
+    <string name="app_name">減重365</string>
+
+    <!--=================system para=======================-->
+    <string name="sys_contact">0980357972</string>
+    <!--debug adv id-->
+    <string name="banner_ad_unit_id_debug">ca-app-pub-3940256099942544/6300978111</string>
+    <!--real adv id-->
+    <string name="banner_ad_unit_id">ca-app-pub-4468644264762001/6089111772</string>
+    <string name="firebase_storage_url">gs://api-project-1023834037928.appspot.com</string>
+    <string name="host">http://api.oli365.com:8180</string>
+
+    <string name="facebook_app_id">1868291430096651</string>
+    <!--=================system para  end =======================-->
+
+
     <string name="action_settings">我的設定</string>
 
     <string name="menu_mymenu">我的選單</string>
-    <string name="menu_mymenu_settings">我的設定</string>
-    <string name="menu_mymenu_weight">減重日誌</string>
-    <string name="menu_mymenu_calory">飲食日記</string>
+    <string name="menu_mymenu_settings">設定</string>
+    <string name="menu_mymenu_weight">日誌</string>
+    <string name="menu_mymenu_plan">分析</string>
+    <string name="menu_mymenu_calory">飲食</string>
+    <string name="menu_mymenu_status">狀態</string>
     <string name="menu_customer_menu">客戶選單</string>
     <string name="menu_customer_query">客戶查詢</string>
     <string name="menu_customer_product">產品配置</string>
     <string name="menu_customer_weight">身體指數</string>
     <string name="menu_mymenu_picture">使用前後</string>
 
-    <string name="menu_about">關於我們</string>
+    <string name="menu_mymenu_contactus">連絡我們</string>
+    <string name="menu_mymenu_logout">登出</string>
+
+    <string name="menu_friend_menu">好友清單</string>
+    <string name="menu_friend_join">加入好友</string>
+
     <!--=========== menu start============-->
     <string name="edit_message">修改</string>
     <string name="action_customer">客戶查詢</string>
@@ -21,20 +44,34 @@
     <string name="action_calory">飲食日記</string>
 
     <!--=========== menu end============-->
-    <string name="btnQuery">查詢</string>
 
 
     <!--=========== settings start ======-->
 
-    <string name="sys_sex">性別</string>
-    <string name="sys_age">年齡</string>
-    <string name="sys_height">身高</string>
-    <string name="sys_base_weight">現在體重</string>
-    <string name="sys_target_weight">目標體重</string>
+    <string name="sys_settings_sex">性別</string>
+    <string name="sys_settings_age">年齡</string>
+    <string name="sys_settings_birthday">生日</string>
+    <string name="sys_settings_height">身高</string>
+    <string name="sys_settings_metabolism">基礎代謝率</string>
+    <string name="sys_settings_expenditure">最低熱量</string>
+    <string name="sys_settings_init_weight">初始體重</string>
+    <string name="sys_settings_init_fatrate">初始體脂肪</string>
+    <string name="sys_settings_init_fatweight">初始脂肪重量</string>
+    <string name="sys_settings_base_weight">現在體重</string>
+    <string name="sys_settings_base_fatrate">現在體脂肪</string>
+    <string name="sys_settings_base_fatweight">現在脂肪重量</string>
+    <string name="sys_settings_target_weight">目標體重</string>
+    <string name="sys_settings_target_fatrate">目標體脂</string>
+    <string name="sys_settings_target_fatweight">目標脂肪重量</string>
     <string name="sys_target_day">目標達成日期</string>
-    <string name="sys_base_action_life">活動係數</string>
-    <string name="sys_init_weight">初始體重</string>
+    <string name="sys_settings_coefficient">活動係數</string>
 
+    <string name="sys_settings_user_email">登入帳號</string>
+    <string name="sys_settings_user_nickname">䁥稱</string>
+
+
+    <string name="sys_target_start_date">預計開始日期</string>
+    <string name="sys_target_end_date">預計結束日期</string>
     <!--=========== settings end ======-->
 
 
@@ -56,11 +93,14 @@
 
     <!--=========== settings end =========-->
 
-    <!--=============setting value===========-->
+    <!--=========== record start ======-->
+    <string name="choice_image">選擇圖片</string>
+    <string name="add_finish">新增成功</string>
+    <string name="close">關閉</string>
+    <string name="save">儲存</string>
+    <string name="delete">刪除</string>
 
-    <string name="host">http://api.oli365.com:8180</string>
-
-    <!--==============setting value end=======-->
+    <!--=========== record end ======-->
     <!--=========== body table start ======-->
     <string name="fat_rate">體脂</string>
     <string name="date">日期</string>
@@ -84,7 +124,7 @@
         completions."
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_loseweight_plan">LoseweightPlan</string>
     <!--=================customer end================-->
@@ -99,13 +139,17 @@
 
 
     <!--==================COMMON =================-->
-    <string name="btnSubmit" >確定</string>
+    <string name="btnSubmit">確定</string>
     <string name="btnCalcel">取消</string>
     <string name="btnAdd">新增</string>
+    <string name="btnView">瀏覽</string>
+    <string name="btnQuery">查詢</string>
+    <string name="btnPrivate">選擇</string>
     <string name="btnEdit">修改</string>
     <string name="btnDelete">修改</string>
     <string name="btnUpload">上傳</string>
-
+    <string name="btnTakePic">拍照</string>
+    <string name="btnSave">儲存</string>
     <!--====================CALORY=================-->
 
     <string name="calory_breakfast">早餐</string>
@@ -117,4 +161,26 @@
 
     <string name="calory_hint">請輸入卡路里</string>
     <string name="calory_remark">請輸入備註</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <!--====================FOOD=================-->
+    <string name="hint_food_name">請輸入食物名稱</string>
+    <string name="hint_food_type">請選擇食物類別</string>
+    <string name="hint_food_calory">請選擇食物卡路里</string>
+    <string name="hint_food_perunit">請輸入每份克數</string>
+    <string name="hint_food_memo">備註</string>
+    <string name="uid_food_type_breakfast">06937549-c418-11e6-aa08-42010a8c0002</string>
+    <string name="uid_food_type_lunch">0aeec5d1-c418-11e6-aa08-42010a8c0002</string>
+    <string name="uid_food_type_dinner">0fe7880d-c418-11e6-aa08-42010a8c0002</string>
+
+    <!--====================加入好友=================-->
+    <string name="menu_join">加入好友</string>
+    <string name="menu_join_scan">掃瞄QRcode</string>
+    <string name="menu_join_generate">產生QRcode</string>
+
+    <!--===============顯示訊息========================-->
+
+    <string name="open_network">請先開啓網路連線，才可以進行此動作</string>
+    <string name="error_message">程式發生錯誤</string>
+
 </resources>

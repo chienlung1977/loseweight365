@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:gravity="center_horizontal"
+            android:textSize="12dip"
+            android:padding="5dip"
+            android:text="年月"
+            />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="12dip"
+            android:padding="5dip"
+            android:text="體重(平均)"
+            />
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="12dip"
+            android:padding="5dip"
+            android:text="體脂(平均)"
+            />
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="12dip"
+            android:padding="5dip"
+            android:text="脂肪重量(平均)"
+            />
+    </LinearLayout>
+
+    <ListView
+
+        android:id="@+id/lst_plan_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+
+</LinearLayout>

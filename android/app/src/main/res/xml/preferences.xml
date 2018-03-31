@@ -6,100 +6,119 @@
     >
 
     <PreferenceCategory
-        android:key="sys_settings"
-        android:title="基本設定">
-
-        <!--
-        <Preference
-            android:title="帳號"
-            android:enabled="false"
-            ></Preference>
-
-        <EditTextPreference
-            android:key="nickname"
-            android:summary="請輸入䁥稱"
-            android:title="䁥稱" />
+        android:title="主機設定">
 
 
-        <EditTextPreference
-        android:key="sys_age"
-        android:inputType="numberSigned"
-        android:title="@string/sys_age"
-        android:dialogTitle="@string/sys_age"
-        />
 
-        <EditTextPreference
-            android:key="sys_height"
-            android:inputType="numberSigned"
-            android:title="@string/sys_height"
-            android:dialogTitle="@string/sys_height"
+        <SwitchPreference
+            android:key="host_connection"
+            android:title="主機連線"
+            android:summary="是否連線主機備份記錄檔"
             />
--->
+
+    </PreferenceCategory>
+
+    <!--
+       <PreferenceCategory
+           android:key="sys_settings"
+           android:title="基本設定">
+
+
+           <Preference
+               android:title="帳號"
+               android:enabled="false"
+               ></Preference>
+
+           <EditTextPreference
+               android:key="nickname"
+               android:summary="請輸入䁥稱"
+               android:title="䁥稱" />
+
+
+           <EditTextPreference
+           android:key="sys_age"
+           android:inputType="numberSigned"
+           android:title="@string/sys_age"
+           android:dialogTitle="@string/sys_age"
+           />
+
+           <EditTextPreference
+               android:key="sys_height"
+               android:inputType="numberSigned"
+               android:title="@string/sys_height"
+               android:dialogTitle="@string/sys_height"
+               />
+
 
 
         <ListPreference
-            android:key="sys_sex"
-            android:title="@string/sys_sex"
+            android:key="sys_settings_sex"
+            android:title="@string/sys_settings_sex"
             android:entries="@array/sys_opts_sex_item"
             android:entryValues="@array/sys_opts_sex_value"
-            android:dialogTitle="@string/sys_sex"
+            android:dialogTitle="@string/sys_settings_sex"
             />
 
         <EditTextPreference
-            android:key="sys_init_weight"
-            android:inputType="numberDecimal"
-            android:title="@string/sys_init_weight" />
-
-
-</PreferenceCategory>
-
-
-    <PreferenceCategory
-        android:key="sys_settings"
-        android:title="目標設定">
-
-<!--
-
-        <EditTextPreference
-            android:key="sys_short_target"
-            android:inputType="numberSigned"
-            android:title="短期目標體重"
+            android:key="sys_settings_height"
+            android:inputType="number"
+            android:title="@string/sys_settings_height"
             />
 
         <Preference
-            android:key="sys_short_target_date"
+            android:key="sys_settings_birthday"
             android:inputType="date"
-            android:title="短期達成日期"
+            android:title="@string/sys_settings_birthday"
             />
--->
-        <EditTextPreference
-            android:key="sys_target_weight"
-            android:inputType="numberDecimal"
-            android:title="@string/sys_target_weight"
-            />
-
-
-        <Preference
-            android:key="sys_target_start_date"
-            android:inputType="date"
-            android:title="目標開始日期"
-            />
-
-
-        <Preference
-            android:key="sys_target_weight_date"
-            android:inputType="date"
-            android:title="@string/sys_target_day"
-            />
-
 
         <ListPreference
-            android:key="sys_base_day_life"
-            android:title="@string/sys_base_action_life"
+            android:key="sys_settings_coefficient"
+            android:title="@string/sys_settings_coefficient"
             android:entries="@array/sys_opts_day_life_item"
             android:entryValues="@array/sys_opts_day_life_value"
             android:defaultValue="@string/sys_opts_day_life_default_value"
             ></ListPreference>
+
+
+        <EditTextPreference
+            android:key="sys_settings_target_weight"
+            android:inputType="numberDecimal"
+            android:title="@string/sys_settings_target_weight"
+            />
+
+        <EditTextPreference
+        android:key="sys_settings_target_fatrate"
+        android:inputType="numberDecimal"
+        android:title="@string/sys_settings_target_fatrate"
+        />
+
+
+</PreferenceCategory>
+   -->
+
+<!--
+    <PreferenceCategory
+        android:key="sys_settings"
+        android:title="目標設定">
+
+
+
+
+        <Preference
+            android:key="sys_setting_target_start_date"
+            android:inputType="date"
+            android:title="@string/sys_target_start_date"
+            />
+
+
+        <Preference
+            android:key="sys_setting_target_end_date"
+            android:inputType="date"
+            android:title="@string/sys_target_end_date"
+            />
+
+
+
 
     </PreferenceCategory>
 
@@ -107,14 +126,77 @@
     <PreferenceCategory
         android:key="sys_mynumber"
         android:title="動態參數">
-        <EditTextPreference
-            android:key="sys_base_weight"
-            android:inputType="numberSigned"
-            android:title="@string/sys_base_weight"
-            android:enabled="false"
+
+        <Preference
+            android:key="sys_settings_user_email"
+            android:title="@string/sys_settings_user_email"
             />
 
+        <Preference
+            android:key="sys_settings_user_nickname"
+            android:title="@string/sys_settings_user_nickname"
+
+            />
+
+        <Preference
+            android:key="sys_settings_age"
+            android:title="@string/sys_settings_age"
+
+            />
+
+        <Preference
+            android:key="sys_setting_metabolism"
+            android:title="@string/sys_settings_metabolism"
+
+            />
+        <Preference
+            android:key="sys_setting_expenditure"
+            android:title="@string/sys_settings_expenditure"
+            />
+
+        <Preference
+            android:key="sys_setting_init_weight"
+            android:title="@string/sys_settings_init_weight"
+
+            />
+
+        <Preference
+            android:key="sys_setting_init_fatrate"
+            android:title="@string/sys_settings_init_fatrate"
+
+            />
+        <Preference
+            android:key="sys_setting_init_fatweight"
+            android:title="@string/sys_settings_init_fatweight"
+
+            />
+
+        <Preference
+            android:key="sys_base_weight"
+            android:title="@string/sys_settings_base_weight"
+            />
+        <Preference
+            android:key="sys_base_fatrate"
+            android:title="@string/sys_settings_base_fatrate"
+
+            />
+
+        <Preference
+            android:key="sys_base_fatweight"
+            android:title="@string/sys_settings_base_fatweight"
+            />
+
+
+
+        <Preference
+            android:key="sys_settings_target_fatweight"
+            android:title="@string/sys_settings_target_fatweight"
+
+            />
+
+
     </PreferenceCategory>
+-->
     <!--
          <PreferenceCategory
              android:key="server_settings"

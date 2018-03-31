@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".ActivityMain">
 <!--
     <item
         android:id="@+id/action_menu_register"
@@ -19,79 +19,100 @@
         app:showAsAction="ifRoom"
         android:title="測試"
         app:title="@string/menu_mymenu_settings" />
-        -->
+
+-->
+
+
     <item
         android:id="@+id/action_mymenu_settings"
-        app:showAsAction="ifRoom"
-        android:title="設定"
-        app:title="@string/menu_mymenu_settings" />
-
+        app:showAsAction="always"
+        android:title="@string/menu_mymenu_settings"
+         />
+<!--
     <item
         android:id="@+id/action_mymenu_picture"
         android:title="@string/menu_mymenu_picture"/>
-
+-->
     <item
         android:id="@+id/action_mymenu_weight"
-        android:title="@string/menu_mymenu_weight"/>
+        android:title="@string/menu_mymenu_weight"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/action_mymenu_calory"
+        android:title="@string/menu_mymenu_calory"
+        app:showAsAction="always"
+        />
+    <!--
+    <item
+        android:id="@+id/action_mymenu_status"
+        android:title="@string/menu_mymenu_status"
+        app:showAsAction="always"
+        />
+        -->
     <item
         android:id="@+id/action_mymenu_plan"
-        android:title="目標試算"/>
+        android:title="@string/menu_mymenu_plan"
+        app:showAsAction="always"
+        />
 
+<!--
     <item
         android:id="@+id/action_mymenu_calory"
         android:title="@string/menu_mymenu_calory"
 
         />
 
+    <item
+        android:title="@string/menu_join">
+        <menu>
+            <item android:title="@string/menu_join_scan" />
+            <item android:title="@string/menu_join_generate" />
 
+        </menu>
+    </item>
 
     <item
         android:id="@+id/contact_us"
-        android:title="連絡我們"/>
+        android:title="@string/menu_mymenu_contactus"/>
+-->
 
-    <item
-        android:id="@+id/action_mymenu_logout"
-        android:title="登出"/>
+
 
 
 
 <!--
-    <item android:id="@+id/action_customer_menu"
-        android:title="@string/menu_customer_menu"
+    <item android:id="@+id/action_friend_menu"
+        android:title="@string/menu_friend_menu"
         android:orderInCategory="100"
         app:showAsAction="never">
         <menu>
             <item
-                android:id="@+id/action_customer_query"
-                android:title="@string/menu_customer_query"/>
-            <item
-                android:id="@+id/action_customer_product"
-                android:title="@string/menu_customer_product"/>
-            <item
-                android:id="@+id/action_customer_weight"
-                android:title="@string/menu_customer_weight"/>
+                android:id="@+id/action_friend_join"
+                android:title="@string/menu_friend_join"/>
+
         </menu>
 
         </item>
 
-        <item android:id="@+id/action_about_us"
-        android:orderInCategory="900"
-        android:title="@string/menu_about"/>
-        -->
-    <!--
+
+
+
     <item android:id="@+id/action_system_menu"
-        android:title="系統測試"
+        android:title="系統功能"
         android:orderInCategory="200"
         app:showAsAction="never" >
         <menu>
+            <item android:id="@+id/action_mymenu_sync"
+                android:title="主機同步" />
 
-            <item android:id="@+id/action_get_api"
-                android:orderInCategory="100"
-                android:title="同步測試" />
+            <item
+                android:id="@+id/action_mymenu_logout"
+                android:title="@string/menu_mymenu_logout"/>
         </menu>
     </item>
-
 -->
+
     <!--
     <item
         android:id="@+id/menu_item_share"

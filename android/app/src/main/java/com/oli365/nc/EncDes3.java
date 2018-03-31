@@ -1,5 +1,6 @@
 package com.oli365.nc;
 
+
 import java.security.Key;
 
 import javax.crypto.Cipher;
@@ -16,6 +17,7 @@ import Decoder.BASE64Encoder;
 public class EncDes3 {
 
     public static String encode(String encryptText) throws Exception{
+
 
         byte[] key=new BASE64Decoder().decodeBuffer("YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4");
         byte[] keyiv = { 1, 2, 3, 4, 5, 6, 7, 8 };

@@ -8,19 +8,22 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.oli365.nc.controller.UserDAO;
+import com.oli365.nc.model.CaloryModel;
+
 import java.util.List;
 
 /**
  * Created by alvinlin on 2016/5/6.
  */
-public class CaloryAdapter extends ArrayAdapter<Calory>  {
+public class CaloryAdapter extends ArrayAdapter<CaloryModel>  {
 
     private int resource;
-    private List<Calory> items;
+    private List<CaloryModel> items;
     private static final String TAG= CaloryAdapter.class.getName();
 
-    public CaloryAdapter(Context context,  List<Calory> calorys) {
-        super(context, 0, calorys);
+    public CaloryAdapter(Context context,  List<CaloryModel> caloryModels) {
+        super(context, 0, caloryModels);
 
         //this.items=calorys;
     }
@@ -31,10 +34,10 @@ public class CaloryAdapter extends ArrayAdapter<Calory>  {
 
         LinearLayout itemView;
 
-        final Calory item = getItem(position);
+        final CaloryModel item = getItem(position);
         if(convertView==null){
 
-            convertView=LayoutInflater.from(getContext()).inflate(R.layout.calory_item, parent, false);
+            convertView=LayoutInflater.from(getContext()).inflate(R.layout.item_calory, parent, false);
             //itemView =new LinearLayout(getContext());
             //String inflater = Context.LAYOUT_INFLATER_SERVICE;
             //LayoutInflater li =(LayoutInflater) getContext().getSystemService(inflater);
@@ -45,18 +48,33 @@ public class CaloryAdapter extends ArrayAdapter<Calory>  {
        //     itemView =(LinearLayout)convertView;
        // }
 
+        //日期
         TextView txtDate = (TextView)convertView.findViewById(R.id.txtDate);
-        TextView txtCalory = (TextView)convertView.findViewById(R.id.txtCalory);
+        txtDate.setText(item.getCreatedate());
 
-        txtDate.setText(item.createdate);
+
+
+        //每日可用卡路里
+        TextView txtDailyCalory=(TextView) convertView.findViewById(R.id.txtDailyCalory);
+
+        UserDAO ud =new UserDAO(convertView.getContext());
+        txtDailyCalory.setText(ud.getDailyCalory());
+
+        //已用卡路里
+        TextView txtCalory = (TextView)convertView.findViewById(R.id.txtCalory);
         int totalCalory = item.getBreakfast()+item.getLunch()+item.getDinner()+item.getDessert()-item.getSport();
         txtCalory.setText(String.valueOf(totalCalory));
+
+        //剩餘卡路里
+        TextView txtRemainingCalory =(TextView)convertView.findViewById(R.id.txtRemainingCalory);
+        int remaining = Integer.valueOf(ud.getDailyCalory()) - totalCalory;
+        txtRemainingCalory.setText(String.valueOf(remaining));
 
         return convertView;
     }
 
 
-    public void set(int index,Calory item){
+    public void set(int index,CaloryModel item){
         if(index >=0 && index < items.size()){
             items.set(index,item);
             notifyDataSetChanged();
@@ -66,7 +84,7 @@ public class CaloryAdapter extends ArrayAdapter<Calory>  {
 
 
 
-    public Calory get(int index){
+    public CaloryModel get(int index){
         return items.get(index);
     }
 

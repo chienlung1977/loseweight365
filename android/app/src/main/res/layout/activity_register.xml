@@ -7,9 +7,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.oli365.nc.RegisterActivity">
+    tools:context="com.oli365.nc.ActivityRegister">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,26 +29,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:textSize="20dp"
                 android:text="註冊新帳號"
                 />
 
         </LinearLayout>
 
 
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-<!--
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Email帳號："
-
-
-                />
-                -->
+            android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
@@ -53,44 +46,12 @@
                 android:inputType="textEmailAddress"
                 android:hint="註冊新帳號Email"
                 />
-        </LinearLayout>
+        </android.support.design.widget.TextInputLayout>
 
-
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-<!--
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="密碼："
+            android:layout_height="wrap_content">
 
-                />
-                -->
-            <EditText
-                android:id="@+id/txtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="輸入新密碼"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-<!--
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="䁥稱："
-
-                />
-                -->
             <EditText
                 android:id="@+id/txtNickName"
                 android:layout_width="match_parent"
@@ -98,8 +59,32 @@
 
                 android:hint="請輸入您的䁥稱"
                 />
-        </LinearLayout>
 
+        </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="輸入密碼"
+                />
+            </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/txtCPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="再次確認密碼"
+                />
+        </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,17 +92,17 @@
             android:textAlignment="center">
 
             <Button
+                android:id="@+id/btnCancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:onClick="closeActivity"
                 android:text="取消"
                 />
             <Button
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:onClick="saveData"
                 android:text="儲存"
                 />
         </LinearLayout>
@@ -183,5 +168,5 @@
 -->
     </LinearLayout>
 
-
+    </ScrollView>
 </RelativeLayout>

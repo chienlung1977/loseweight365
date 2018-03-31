@@ -2,6 +2,8 @@ package com.oli365.nc;
 
 import android.os.AsyncTask;
 
+import com.oli365.nc.controller.Utility;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

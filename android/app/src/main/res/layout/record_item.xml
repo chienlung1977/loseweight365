@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,21 +14,56 @@
         android:layout_marginBottom="5dp"
         >
 
-    <TextView
-        android:id="@+id/txtCreateTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="@dimen/activity_horizontal_margin"
-        />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <ImageView
 
-        <ImageView
-            android:layout_gravity="center"
-            android:id="@+id/txtPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                    android:id="@+id/txtPhoto"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
 
-            />
+                    />
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/txtCreateTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:layout_margin="5dp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/tvRecordMainMemo"
+                        android:textSize="16dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        />
+
+
+
+                    <com.facebook.share.widget.ShareButton
+                        android:id="@+id/btn_fb_share"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:contentDescription="分享照片" />
+                </LinearLayout>
+            </TableRow>
+
+        </TableLayout>
+
 
     </LinearLayout>
 

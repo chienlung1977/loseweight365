@@ -18,7 +18,7 @@ import java.util.Locale;
 public class DatePickerFragment extends DialogFragment  implements DatePickerDialog.OnDateSetListener {
 
 
-    private static final String TAG="DatePickerFragment.tag";
+    private static final String TAG=DatePickerFragment.class.getName();
 
     private Boolean isSet=false;
     private int yy;
@@ -28,11 +28,11 @@ public class DatePickerFragment extends DialogFragment  implements DatePickerDia
     @Override
     public void setArguments(Bundle args) {
         super.setArguments(args);
-        Log.i(TAG,"setArguments run");
-        if(args.getString("target_date")!=""){
+
+        if(!args.getString("target_date").equals("")){
             String dateString =args.getString("target_date");
             Log.i(TAG,"setArguments run target_date=" + dateString);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
             try {
                 Date d = sdf.parse(dateString);
 
@@ -62,11 +62,11 @@ public class DatePickerFragment extends DialogFragment  implements DatePickerDia
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), (SettingsActivity)getActivity(), year, month, day);
+            return new DatePickerDialog(getActivity(), (ActivitySettings)getActivity(), year, month, day);
         }
         else{
             Log.i(TAG,"onCreateDialog run yy=" + String.valueOf(yy) + ",mm=" + String.valueOf(mm) + ",dd=" + String.valueOf(dd));
-            return new DatePickerDialog(getActivity(), (SettingsActivity)getActivity(), yy, mm, dd);
+            return new DatePickerDialog(getActivity(), (ActivitySettings)getActivity(), yy, mm, dd);
         }
 
     }
@@ -74,9 +74,8 @@ public class DatePickerFragment extends DialogFragment  implements DatePickerDia
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-        Log.i(TAG,"onDateSet run");
-       //todo 將資料回傳至前端儲存設定
-        Log.w("DatePicker","Date = " + year);
+
+        Log.d(TAG,"DatePickerFragment onDateSet,year=" + year + ",month=" + monthOfYear + ",day=" + dayOfMonth);
        // Toast.makeText(getActivity(), year, Toast.LENGTH_SHORT).show();
     }
 }
