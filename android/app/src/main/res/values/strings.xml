@@ -16,6 +16,11 @@
     <!--=================system para  end =======================-->
 
 
+    <string name="sys_settings_system_level">體脂器類型</string>
+    <string name="sys_settings_system_level_summary">請選擇體脂器類型</string>
+    <string name="sys_settings_system_level_defaultvalue">N</string>
+
+
     <string name="action_settings">我的設定</string>
 
     <string name="menu_mymenu">我的選單</string>

@@ -22,6 +22,7 @@ import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.oli365.nc.controller.DbHelper;
 import com.oli365.nc.controller.RecordDAO;
+import com.oli365.nc.controller.SettingDAO;
 import com.oli365.nc.controller.Utility;
 
 import java.io.InputStream;
@@ -34,6 +35,7 @@ public class ActivityRecordMain extends AppCompatActivity
         {
 
     private static final String TAG=ActivityRecordMain.class.getName();
+    private ListView lv;
     private AdapterRecordCursor itemAdapter;
     private long  _id ;
     private final int PICK_IMAGE = 101;
@@ -43,177 +45,216 @@ public class ActivityRecordMain extends AppCompatActivity
     private CallbackManager callbackManager;
     private LoginManager loginManager;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_record_main);
-
-        /*
-        RecordDAO item =new RecordDAO(getApplicationContext());
-        if(item.getCount()==0){
-
-            item.sample();
-        }
-        List<Record> items = item.getAll();
-        ArrayAdapter<Record> itemAdapter = new ArrayAdapter<Record>(this,android.R.layout.simple_expandable_list_item_1 ,items);
 
 
-        ListView listview =(ListView)findViewById(R.id.recordList);
-        listview.setAdapter(itemAdapter);
-        */
-
-        // View header = getLayoutInflater().inflate(R.layout.record_header,null);
-
-        // mList.addHeaderView(header);
-
-        bindData();
-
-
-
-
-    }
-
-    /*
-    private List<Record> buildData(){
-
-        //DbHelper dbHelper =new DbHelper(ActivityRecordMain.this,)
-
-    }
-
-    */
-
-
-
-
-    private void bindData(TIME_PERIOD period){
-
-        String queryString = "" ;
-
-        switch (period){
-            case TODAY:
-                queryString="SELECT * FROM RECORD  WHERE date('now') = date(CREATE_TIME) AND (STATUS='1' OR STATUS='0') ";
-                break;
-            case MORNING:
-                queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=6 AND cast(strftime('%H',CREATE_TIME) as integer)<12 AND (STATUS='1' OR STATUS='0')";
-                break;
-            case AFTERNOON:
-                queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=12 AND cast(strftime('%H',CREATE_TIME) as integer)<18 AND (STATUS='1' OR STATUS='0')";
-                break;
-            case NIEGHT:
-                queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=18 AND cast(strftime('%H',CREATE_TIME) as integer) <=23 AND (STATUS='1' OR STATUS='0')";
-                break;
-            case DAWN:
-                queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=0 AND cast(strftime('%H',CREATE_TIME) as integer)<6 AND (STATUS='1' OR STATUS='0')";
-                break;
-           default:
-               queryString="SELECT * FROM RECORD WHERE (STATUS='1' OR STATUS='0')";
-               break;
-        }
-
-        queryString += "  ORDER BY CREATE_TIME DESC";
-
-        SQLiteDatabase db = DbHelper.getDatabase(this);
-        Cursor todoCursor =db.rawQuery(queryString, null);
-
-        Log.i(TAG,"todoCursor count =" + todoCursor.getCount());
-
-        ListView mList =(ListView)findViewById(R.id.recordList);
-
-        // View header = getLayoutInflater().inflate(R.layout.record_header,null);
-
-        // mList.addHeaderView(header);
-
-
-      //  getLoaderManager().initLoader(0x01, null,this);
-        itemAdapter =new AdapterRecordCursor(this,todoCursor);
-        mList.setAdapter(itemAdapter);
-
-
-
-        //simpleAdapter=new SimpleAdapter(this,,R.layout.activity_record_main,)
-
-
-        //String[] mNames =buildData(30,"Name");
-
-        /*
-        ListAdapter mAdapter =new ArrayAdapter<String>(this,R.layout.activity_record_main,R.id.fr ,mNames);
-        mList.setAdapter(mAdapter);
-
-        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-        */
-    }
-
-
-
+    private String LEVEL;
 
     private enum TIME_PERIOD{
         ALL,TODAY,MORNING,AFTERNOON,NIEGHT,DAWN
     }
 
-    private void bindData(){
-        bindData(TIME_PERIOD.ALL);
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    private void sharePhotoToFacebook(){
-
-        Log.d(TAG,"sharePhotoToFacebook function start");
-        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-        SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(image)
-                .setCaption("test share pic")
-                .build();
-
-        SharePhotoContent content = new SharePhotoContent.Builder()
-                .addPhoto(photo)
-                .build();
-
-        ShareApi.share(content, null);
+        setContentView(R.layout.activity_record_main);
+        SettingDAO sd =new SettingDAO(this);
+        LEVEL = sd.getLevel();
+        if(LEVEL=="N"){
+            bindNData(TIME_PERIOD.ALL);
+        }
+        else if(LEVEL=="H"){
+            bindHData(TIME_PERIOD.ALL);
+        }
 
     }
 
 
+
+    //region 一般指數
+
+            //依照時間區間載入資料（一般指數）
+            private void bindNData(TIME_PERIOD period){
+
+                String queryString = "" ;
+
+                switch (period){
+                    case TODAY:
+                        queryString="SELECT * FROM RECORD  WHERE date('now') = date(CREATE_TIME) AND (STATUS='1' OR STATUS='0') ";
+                        break;
+                    case MORNING:
+                        queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=6 AND cast(strftime('%H',CREATE_TIME) as integer)<12 AND (STATUS='1' OR STATUS='0')";
+                        break;
+                    case AFTERNOON:
+                        queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=12 AND cast(strftime('%H',CREATE_TIME) as integer)<18 AND (STATUS='1' OR STATUS='0')";
+                        break;
+                    case NIEGHT:
+                        queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=18 AND cast(strftime('%H',CREATE_TIME) as integer) <=23 AND (STATUS='1' OR STATUS='0')";
+                        break;
+                    case DAWN:
+                        queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=0 AND cast(strftime('%H',CREATE_TIME) as integer)<6 AND (STATUS='1' OR STATUS='0')";
+                        break;
+                    default:
+                        queryString="SELECT * FROM RECORD WHERE (STATUS='1' OR STATUS='0')";
+                        break;
+                }
+
+                queryString += "  ORDER BY CREATE_TIME DESC";
+                SQLiteDatabase db = DbHelper.getDatabase(this);
+                Cursor todoCursor =db.rawQuery(queryString, null);
+
+
+                lv  =(ListView)findViewById(R.id.recordList);
+                itemAdapter =new AdapterRecordCursor(this,todoCursor);
+                lv.setAdapter(itemAdapter);
+
+
+
+
+            }
+
+    //endregion
+
+
+
+    //region 七大指數程式
+
+
+            //依照時間區間載入資料（七大指數）
+            private void bindHData(TIME_PERIOD period){
+
+                String queryString = "" ;
+
+                switch (period){
+                    case TODAY:
+                        queryString="SELECT * FROM RECORD  WHERE date('now') = date(CREATE_TIME) AND (STATUS='1' OR STATUS='0') ";
+                        break;
+                    case MORNING:
+                        queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=6 AND cast(strftime('%H',CREATE_TIME) as integer)<12 AND (STATUS='1' OR STATUS='0')";
+                        break;
+                    case AFTERNOON:
+                        queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=12 AND cast(strftime('%H',CREATE_TIME) as integer)<18 AND (STATUS='1' OR STATUS='0')";
+                        break;
+                    case NIEGHT:
+                        queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=18 AND cast(strftime('%H',CREATE_TIME) as integer) <=23 AND (STATUS='1' OR STATUS='0')";
+                        break;
+                    case DAWN:
+                        queryString="SELECT * FROM RECORD  WHERE cast(strftime('%H',CREATE_TIME) as integer)>=0 AND cast(strftime('%H',CREATE_TIME) as integer)<6 AND (STATUS='1' OR STATUS='0')";
+                        break;
+                    default:
+                        queryString="SELECT * FROM RECORD WHERE (STATUS='1' OR STATUS='0')";
+                        break;
+                }
+
+                queryString += "  ORDER BY CREATE_TIME DESC";
+                SQLiteDatabase db = DbHelper.getDatabase(this);
+                Cursor todoCursor =db.rawQuery(queryString, null);
+
+
+                lv  =(ListView)findViewById(R.id.recordList);
+                itemAdapter =new AdapterRecordCursor(this,todoCursor);
+                lv.setAdapter(itemAdapter);
+
+
+        /*
+        lv.setLongClickable(true);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String itemValue = (String) lv.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(),"itemid=" + lv.getSelectedItemId() + ",itemvalue=" + itemValue,
+                        Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(),"long click itemid=" + lv.getSelectedItemId() ,
+                        Toast.LENGTH_LONG).show();
+                return true ;
+            }
+        });
+
+
+*/
+
+            }
+
+
+    //endregion
+
+
+
+
+
+
+
+    //region facebook
+
+            private void sharePhotoToFacebook(){
+
+                Log.d(TAG,"sharePhotoToFacebook function start");
+                Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+                SharePhoto photo = new SharePhoto.Builder()
+                        .setBitmap(image)
+                        .setCaption("test share pic")
+                        .build();
+
+                SharePhotoContent content = new SharePhotoContent.Builder()
+                        .addPhoto(photo)
+                        .build();
+
+                ShareApi.share(content, null);
+
+            }
+
+            //endregion
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
-        //Toast.makeText(ActivityRecordMain.this,"aaaaaaaaaaaa", Toast.LENGTH_LONG).show();
 
-        switch (item.getItemId()){
-            case R.id.btnAdd:
-                Intent intent =new Intent(this,ActivityRecordAdd.class);
-                //startActivity(intent);
-                startActivityForResult(intent, ADD_RECORD);
-                return true;
-            case R.id.btnView_Today:
-                bindData(TIME_PERIOD.TODAY);
-                return true;
-            case R.id.btnView_1:
-                bindData(TIME_PERIOD.MORNING);
-                return true;
-            case R.id.btnView_2:
-                bindData(TIME_PERIOD.AFTERNOON);
-                return true;
-            case R.id.btnView_3:
-                bindData(TIME_PERIOD.NIEGHT);
-                return true;
-            case R.id.btnView_4:
-                bindData(TIME_PERIOD.DAWN);
-                return true;
-            case R.id.btnView_All:
-                bindData(TIME_PERIOD.ALL);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        //return super.onOptionsItemSelected(item);
+              if(LEVEL=="N"){
+
+              }
+              else if(LEVEL=="H"){
+
+                  switch (item.getItemId()){
+                      case R.id.btnAdd:
+                          Intent intent =new Intent(this,ActivityRecordAdd.class);
+                          //startActivity(intent);
+                          startActivityForResult(intent, ADD_RECORD);
+                          return true;
+                      case R.id.btnView_Today:
+                          bindHData(TIME_PERIOD.TODAY);
+                          return true;
+                      case R.id.btnView_1:
+                          bindHData(TIME_PERIOD.MORNING);
+                          return true;
+                      case R.id.btnView_2:
+                          bindHData(TIME_PERIOD.AFTERNOON);
+                          return true;
+                      case R.id.btnView_3:
+                          bindHData(TIME_PERIOD.NIEGHT);
+                          return true;
+                      case R.id.btnView_4:
+                          bindHData(TIME_PERIOD.DAWN);
+                          return true;
+                      case R.id.btnView_All:
+                          bindHData(TIME_PERIOD.ALL);
+                          return true;
+                      default:
+                          return super.onOptionsItemSelected(item);
+                  }
+                  //return super.onOptionsItemSelected(item);
+              }
+
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -222,22 +263,28 @@ public class ActivityRecordMain extends AppCompatActivity
 
         try {
 
-            Log.d(TAG,"requestCode=" + requestCode );
+            if(LEVEL=="N"){
 
-            if(requestCode == ADD_RECORD &&  resultCode==RESULT_OK){
-                bindData();
+            }
+            else if(LEVEL =="H"){
+                if(requestCode == ADD_RECORD &&  resultCode==RESULT_OK){
+                    bindHData(TIME_PERIOD.ALL);
+                }
+
+                if (requestCode == PICK_IMAGE && data != null) {
+
+                    InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
+                    //Now you can do whatever you want with your inpustream, save it as file, upload to a server, decode a bitmap
+                }
+                //回呼facebook
+                //Log.d(TAG,"CALL BACK FACEBOOK");
+                //callbackManager.onActivityResult(requestCode, resultCode, data);
+                //String result = "requestCode=" + String.valueOf(requestCode) + "resultCode" + String.valueOf(resultCode);
+                //Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
             }
 
-            if (requestCode == PICK_IMAGE && data != null) {
 
-                InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
-                //Now you can do whatever you want with your inpustream, save it as file, upload to a server, decode a bitmap
-            }
-            //回呼facebook
-            //Log.d(TAG,"CALL BACK FACEBOOK");
-            //callbackManager.onActivityResult(requestCode, resultCode, data);
-            //String result = "requestCode=" + String.valueOf(requestCode) + "resultCode" + String.valueOf(resultCode);
-            //Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+
         }
         catch(Exception ex){
 
@@ -261,11 +308,7 @@ public class ActivityRecordMain extends AppCompatActivity
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-       // getLoaderManager().restartLoader(0x01, null, this);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -280,21 +323,28 @@ public class ActivityRecordMain extends AppCompatActivity
 
     private AlertDialog AskOption()
     {
-        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
-                //set message, title, and icon
-                //.setTitle("Delete")
-                .setMessage("確定要刪除？")
-               // .setIcon(R.drawable.delete)
 
-                .setPositiveButton("刪除", new DialogInterface.OnClickListener() {
+        if(LEVEL =="N"){
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                 //       android.os.Debug.waitForDebugger();
-                        //上傳刪除記錄，接著才刪除本地端內容
-                        RecordDAO rd =new RecordDAO(ActivityRecordMain.this);
-                        rd.delete(_id);
-                        Utility.showMessage(ActivityRecordMain.this,"刪除成功");
-                        bindData();
+
+        }
+
+        else if(LEVEL=="H"){
+            AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
+                    //set message, title, and icon
+                    //.setTitle("Delete")
+                    .setMessage("確定要刪除？")
+                    // .setIcon(R.drawable.delete)
+
+                    .setPositiveButton("刪除", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            //       android.os.Debug.waitForDebugger();
+                            //上傳刪除記錄，接著才刪除本地端內容
+                            RecordDAO rd =new RecordDAO(ActivityRecordMain.this);
+                            rd.delete(_id);
+                            Utility.showMessage(ActivityRecordMain.this,"刪除成功");
+                            bindHData(TIME_PERIOD.ALL);
                         /*
                         NetworkDAO nd =new NetworkDAO(ActivityRecordMain.this);
                         RecordDAO rd =new RecordDAO(ActivityRecordMain.this);
@@ -337,7 +387,7 @@ public class ActivityRecordMain extends AppCompatActivity
                         }
 
 */
-                        dialog.dismiss();
+                            dialog.dismiss();
 
                         /*
                         if (dao.deleteR(_id)) {
@@ -361,21 +411,25 @@ public class ActivityRecordMain extends AppCompatActivity
                         dialog.dismiss();
                         bindData();
                         */
-                    }
+                        }
 
-                })
+                    })
 
 
 
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Toast.makeText(getApplicationContext(),"choice cancel",Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            //Toast.makeText(getApplicationContext(),"choice cancel",Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
 
-                    }
-                })
-                .create();
-        return myQuittingDialogBox;
+                        }
+                    })
+                    .create();
+            return myQuittingDialogBox;
+        }
+
+
+        return null;
 
     }
 

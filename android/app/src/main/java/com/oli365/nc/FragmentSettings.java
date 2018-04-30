@@ -2,7 +2,11 @@ package com.oli365.nc;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +19,7 @@ import com.oli365.nc.controller.SettingDAO;
 public class FragmentSettings extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private static final String TAG =FragmentSettings.class.getName();
     SettingDAO sd;
     View v;
 
@@ -39,6 +44,8 @@ public class FragmentSettings extends PreferenceFragment
         }
 
         mode.setSummary(s);
+
+
         EditTextPreference username = (EditTextPreference)findPreference("username");
         username.setSummary(sp.getString("username",getResources().getString(R.string.username_summary)));
         //密碼要改為相同長度的star
@@ -76,9 +83,6 @@ public class FragmentSettings extends PreferenceFragment
         //已經設定過資料
         if(sd.getFirstSetting()==true){
 
-
-
-
         }
 
     }
@@ -87,14 +91,14 @@ public class FragmentSettings extends PreferenceFragment
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
+        Log.v(TAG,"1key=" + key);
         //如果是第一次設定，則下次登入不再直接跳出設定畫面
         if(sd.getFirstSetting()==false){
             sd.setFirstSetting();
         }
 
 
-      /*
+     /*
         SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = pref.edit();
 
@@ -115,12 +119,12 @@ public class FragmentSettings extends PreferenceFragment
 
         editor.commit();
 
-
+*/
 
         //顯示改變值後的記錄
         SharedPreferences sp = getPreferenceScreen().getSharedPreferences();
         Preference pref = findPreference(key);
-        if(pref instanceof  EditTextPreference){
+        if(pref instanceof EditTextPreference){
             EditTextPreference etp= (EditTextPreference) pref;
             if(key.equals("password")){
                 String star ="";
@@ -136,14 +140,17 @@ public class FragmentSettings extends PreferenceFragment
         }
         else if(pref instanceof ListPreference){
 
-            if(key.equals("mode")){
-                ListPreference mode =(ListPreference)findPreference("mode");
-                String s = sp.getString("mode", getResources().getString(R.string.mode_summary));
-                if(s.equals("1")){
-                   String[] a = getResources().getStringArray(R.array.sys_opts_sex_item);
+            Log.v(TAG,"key=" + key);
+
+            //量測器等級N 正常 H 七大指數
+            if(key.equals("sys_settings_system_level")){
+                ListPreference mode =(ListPreference)findPreference("sys_settings_system_level");
+                String s = sp.getString("sys_settings_system_level", getResources().getString(R.string.mode_summary));
+                if(s.equals("N")){
+                   String[] a = getResources().getStringArray(R.array.sys_opts_system_level_item);
                     mode.setSummary(a[0]);
-                }else if(s.equals("2")){
-                    String[] a = getResources().getStringArray(R.array.sys_opts_sex_item);
+                }else if(s.equals("H")){
+                    String[] a = getResources().getStringArray(R.array.sys_opts_system_level_item);
                     mode.setSummary(a[1]);
                 }
 
@@ -151,7 +158,7 @@ public class FragmentSettings extends PreferenceFragment
             }
         }
 
- */
+
 
     }
 
@@ -169,15 +176,13 @@ public class FragmentSettings extends PreferenceFragment
     @Override
     public void onResume() {
         super.onResume();
-        getPreferenceScreen().getSharedPreferences()
-                .registerOnSharedPreferenceChangeListener(this);
+        getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onPause() {
 
-        getPreferenceScreen().getSharedPreferences()
-                .unregisterOnSharedPreferenceChangeListener(this);
+        getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         super.onPause();
     }
 }

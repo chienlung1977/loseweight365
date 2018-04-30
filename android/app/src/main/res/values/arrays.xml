@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="sys_opts_system_level_item">
+        <item>一般(體脂)</item>
+        <item>高級(七大指數)</item>
+    </string-array>
+
+    <string-array name="sys_opts_system_level_value">
+        <item>N</item>
+        <item>H</item>
+    </string-array>
+
+
     <string-array name="sys_opts_sex_item" >
         <item>男性</item>
         <item>女性</item>

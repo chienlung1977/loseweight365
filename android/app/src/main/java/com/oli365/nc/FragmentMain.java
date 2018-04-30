@@ -20,13 +20,32 @@ import com.oli365.nc.model.TodayDataModel;
 public class FragmentMain extends Fragment {
 
     private static final String TAG =ActivityMain.class.getName();
-    public FragmentMain() {
+    View view ;
+
+
+    public static FragmentMain newInstance(int index){
+        FragmentMain f = new FragmentMain();
+
+        // Supply index input as an argument.
+        Bundle args = new Bundle();
+        args.putInt("index", index);
+        f.setArguments(args);
+
+        return f;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_main, container, false);
+
+        /*
+        if(container==null){
+            return null;
+        }
+        */
+
+        view =inflater.inflate(R.layout.fragment_main, container, false);
 
         //載入google廣告
         loadAdv(view);
@@ -115,4 +134,16 @@ public class FragmentMain extends Fragment {
     //endregion
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bindingData(view);
+    }
+
+   
 }

@@ -31,7 +31,13 @@ public class ActivityMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        try{
+            setContentView(R.layout.activity_main);
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -216,39 +222,30 @@ public class ActivityMain extends AppCompatActivity {
 
 
 
+    //region MENU相關
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        //MenuItem item = menu.findItem(R.id.menu_item_share);
-
-        // Fetch and store ShareActionProvider
-       // mShareActionProvider = (ShareActionProvider) item.getActionProvider();
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        int myItemId = item.getItemId();
 
-        //Intent intent;
-
-        switch (item.getItemId()){
+        switch (myItemId){
             case R.id.action_mymenu_settings:
                 openSettings();
                 return true;
             //卡路里記錄
 
             case R.id.action_mymenu_calory:
-               // openCalory();
+                openCalory();
                 return true;
 
             case R.id.action_mymenu_weight:
@@ -317,6 +314,10 @@ public class ActivityMain extends AppCompatActivity {
 
 
 
+    //endregion
+
+
+
 
     public void openBodyRecord(){
 
@@ -334,16 +335,16 @@ public class ActivityMain extends AppCompatActivity {
 
         Intent i =new Intent(this,ActivitySettings.class);
         startActivity(i);
-   /*
+/*
         FragmentManager mFragmentManager = getFragmentManager();
         FragmentTransaction mFragmentTransaction = mFragmentManager
                 .beginTransaction();
         FragmentSettings mPrefsFragment = new FragmentSettings();
        // mFragmentTransaction.replace(android.R.id.content, mPrefsFragment);
-        mFragmentTransaction.replace(R.id.content_main, mPrefsFragment);
+        mFragmentTransaction.replace(R.id.fragment, mPrefsFragment);
         mFragmentTransaction.commit();
+*/
 
-        */
     }
 
     public void openBase(){

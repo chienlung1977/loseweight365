@@ -212,11 +212,13 @@ public class FragmentCaloryMain extends Fragment {
         b.putString("date",date);
         fgClaoryNew.setArguments(b);
 
+        /*
         fragmentTrans.addToBackStack(null);
         fragmentTrans.replace(R.id.fg_calory_content, fgClaoryNew);
 
         fragmentTrans.commit();
 
+*/
         //TextView txtDate = (TextView) v.findViewById(R.id.txtDate);
 
 

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.share.model.SharePhoto;
@@ -31,6 +32,8 @@ import java.io.InputStream;
 import java.net.URI;
 import java.text.DecimalFormat;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 /**
  * Created by alvinlin on 2016/4/3.
  */
@@ -41,26 +44,26 @@ public class AdapterRecordCursor extends CursorAdapter {
     CallbackManager callbackManager;
     ShareDialog shareDialog;
 
+    View view ;
     Context context ;
+    Cursor cursor;
+    int flag ;
 
 
-    /*
-    private TextView txtCreateTime;
-    private TextView txtWeight;
-    private TextView txtFatRate;
-    private TextView txtMetabolism;
-    private TextView txtBodyAge;
-    private TextView txtBoneWeight;
-    private TextView txtInsideFat;
-    private TextView txtMuscleWeight;
-    private TextView txtMuscleRate;
-    */
 
     public AdapterRecordCursor(Context context, Cursor c) {
-        super(context, c, 0);
-        this.context = context ;
+        super(context, c);
+        this.cursor =c;
     }
 
+    /*
+    public AdapterRecordCursor(Context context, Cursor c, int flag) {
+        //super(context, c, 0);
+        this.context = context ;
+        this.cursor= c ;
+    }
+
+*/
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
@@ -86,8 +89,41 @@ public class AdapterRecordCursor extends CursorAdapter {
             }
         }
     }
+
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+
+        this.view = view;
+        this.context =context;
+        this.cursor =cursor;
+
+        //載入資料
+        bindingEvent();
+        bindingData();
+
+    }
+
+    //region 載入資料
+
+    private void bindingEvent(){
+
+        final Context c =context;
+        final String id =cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                Toast.makeText(c, "_id=" + id , Toast.LENGTH_SHORT).show();
+                AlertDialog diaBox = AskOption(c,id);
+                diaBox.show();
+
+                // Toast.makeText(c, "_id=" + id + ",recordUid=" + recordUid, Toast.LENGTH_LONG).show();
+                return true ;
+            }
+        });
+    }
+
+    private void bindingData(){
 
         TextView txtCreateTime = (TextView) view.findViewById(R.id.txtCreateTime);
         TextView txtWeight = (TextView) view.findViewById(R.id.txtWeight);
@@ -100,7 +136,6 @@ public class AdapterRecordCursor extends CursorAdapter {
         TextView txtBodyWater = (TextView)view.findViewById(R.id.txtMuscleRate);
         ImageView txtPhoto =(ImageView)view.findViewById(R.id.txtPhoto);
         TextView tvRecordMainMemo =(TextView)view.findViewById(R.id.tvRecordMainMemo);
-
 
         String createTime =cursor.getString(cursor.getColumnIndexOrThrow("CREATE_TIME"));
         createTime = Utility.getShortDate(createTime);  //去掉秒數
@@ -171,11 +206,11 @@ public class AdapterRecordCursor extends CursorAdapter {
                 Uri uri =Uri.parse("file://" + Utility.getImagePath(view.getContext()) +  photo);
                 //String path =getRealPathFromURI(context,uri);
 
-   //             context.grantUriPermission(context.getPackageName(), uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                //             context.grantUriPermission(context.getPackageName(), uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                 //Intent data = new Intent(RecordCursorAdapter.)
                 //final int takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION);
-               // context.getContentResolver().takePersistableUriPermission(uri, takeFlags);
+                // context.getContentResolver().takePersistableUriPermission(uri, takeFlags);
 
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
 
@@ -185,8 +220,8 @@ public class AdapterRecordCursor extends CursorAdapter {
                         uri);
                 BitmapFactory.decodeStream(in, null, bitmapOptions);
 
-               // float widthRatio = (float) 1024 / (float)bitmapOptions.outWidth;
-               // float heightRatio =(float) 768 / (float)bitmapOptions.outHeight;
+                // float widthRatio = (float) 1024 / (float)bitmapOptions.outWidth;
+                // float heightRatio =(float) 768 / (float)bitmapOptions.outHeight;
 
                 float widthRatio = (float) 640 / (float)bitmapOptions.outWidth;
                 float heightRatio =(float) 480 / (float)bitmapOptions.outHeight;
@@ -206,7 +241,7 @@ public class AdapterRecordCursor extends CursorAdapter {
 
                 Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(bitmap, newweight, newheight);
 
-                 txtPhoto.setImageBitmap(ThumbImage);
+                txtPhoto.setImageBitmap(ThumbImage);
 
 
 
@@ -219,24 +254,20 @@ public class AdapterRecordCursor extends CursorAdapter {
         else {
             txtPhoto.setImageResource(R.drawable.nopic);
 
-           // txtPhoto.setVisibility(View.GONE);
+            // txtPhoto.setVisibility(View.GONE);
         }
 
 
-
-        //todo 刪除listitem項目
-        final Context c =context;
-        view.setOnLongClickListener(new View.OnLongClickListener() {
+        txtPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
 
-                AlertDialog diaBox = AskOption(c,id);
-                diaBox.show();
+                Toast.makeText(getApplicationContext()," click photo"   ,
+                        Toast.LENGTH_LONG).show();
 
-               // Toast.makeText(c, "_id=" + id + ",recordUid=" + recordUid, Toast.LENGTH_LONG).show();
-                return true ;
             }
         });
+
 
 
         if(weightdiff==0){
@@ -323,7 +354,7 @@ public class AdapterRecordCursor extends CursorAdapter {
         //判斷如果有圖檔才顯示分享
         //分享按鈕
         ShareButton btn_fb_share =(ShareButton)view.findViewById(R.id.btn_fb_share);
-       // btn_fb_share.setEnabled(false);
+        // btn_fb_share.setEnabled(false);
         if(!"".equals(photo)){
 
             try{
@@ -351,9 +382,6 @@ public class AdapterRecordCursor extends CursorAdapter {
 
 
         }
-
-
-
 
 
     }
@@ -438,12 +466,16 @@ public class AdapterRecordCursor extends CursorAdapter {
                         //上傳刪除記錄，接著才刪除本地端內容
                         RecordDAO rd =new RecordDAO(context);
 
+
                         if(rd.delete(_id)){
+                            Toast.makeText(context, "_id=" + _id , Toast.LENGTH_SHORT).show();
                             Utility.showMessage(context,"刪除成功");
+
                         }
                         else{
                             Utility.showMessage(context,"刪除失敗");
                         }
+
 
                         //bindData();
                         /*

@@ -6,16 +6,26 @@
     >
 
     <PreferenceCategory
-        android:title="主機設定">
+        android:title="系統設定">
 
 
 
+        <ListPreference
+            android:key="sys_settings_system_level"
+            android:title="@string/sys_settings_system_level"
+            android:entries="@array/sys_opts_system_level_item"
+            android:entryValues="@array/sys_opts_system_level_value"
+            android:defaultValue="@string/sys_settings_system_level_defaultvalue"
+            android:dialogTitle="@string/sys_settings_system_level"
+            />
+<!--
         <SwitchPreference
             android:key="host_connection"
             android:title="主機連線"
             android:summary="是否連線主機備份記錄檔"
             />
 
+-->
     </PreferenceCategory>
 
     <!--

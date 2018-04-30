@@ -1,8 +1,6 @@
 package com.oli365.nc;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -220,6 +218,7 @@ public class FragmentCaloryNew extends android.app.Fragment {
                 //final AlertDialog ad=getAddAlertDialog();
                 //ad.show();
                 //導到新增食物
+                /*
                 FragmentManager fm = getFragmentManager();
                 FragmentFoodNew ffn  =new FragmentFoodNew();
                 FragmentTransaction ft = fm.beginTransaction();
@@ -227,6 +226,7 @@ public class FragmentCaloryNew extends android.app.Fragment {
 
                 ft.addToBackStack(null).replace(R.id.fg_calory_content,ffn).commit();
 
+*/
 
             }
         });
@@ -240,6 +240,7 @@ public class FragmentCaloryNew extends android.app.Fragment {
             public void onClick(View v) {
                // Toast.makeText(view.getContext(),"cancel click" , Toast.LENGTH_SHORT).show();
                // Log.d(TAG," button cancel click");
+                /*
                 FragmentManager fragmentMgr = getFragmentManager();
                 FragmentCaloryMain fgClaoryMain =new FragmentCaloryMain();
                 FragmentTransaction fragmentTrans = fragmentMgr.beginTransaction();
@@ -249,6 +250,7 @@ public class FragmentCaloryNew extends android.app.Fragment {
 
                 fragmentTrans.commit();
 
+*/
             }
         });
 
@@ -320,6 +322,7 @@ public class FragmentCaloryNew extends android.app.Fragment {
                 //將資料存入後導向回總卡路里頁面
                 cd.update(c);
 
+                /*
                 FragmentManager fragmentMgr = getFragmentManager();
                 FragmentCaloryMain fgClaoryMain =new FragmentCaloryMain();
                 FragmentTransaction fragmentTrans = fragmentMgr.beginTransaction();
@@ -328,6 +331,7 @@ public class FragmentCaloryNew extends android.app.Fragment {
 
                 fragmentTrans.commit();
 
+*/
             }
         });
 
@@ -665,6 +669,7 @@ public class FragmentCaloryNew extends android.app.Fragment {
 
     private void change2FoodList(FoodModel.MAIN_FOOD_TYPE mainType, String typeuid){
 
+        /*
         FragmentManager fragmentMgr = getFragmentManager();
         FragmentFoodList ffn =new FragmentFoodList();
         FragmentTransaction ft = fragmentMgr.beginTransaction();
@@ -678,6 +683,7 @@ public class FragmentCaloryNew extends android.app.Fragment {
         ft.replace(R.id.fg_calory_content, ffn);
 
         ft.commit();
+        */
     }
 
 

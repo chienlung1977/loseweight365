@@ -3,8 +3,6 @@ package com.oli365.nc;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -146,6 +144,7 @@ public class FragmentFoodList extends Fragment {
 
     private void goForward(){
 
+        /*
         FragmentManager fm  = getFragmentManager();
         FragmentFoodNew ffn =new FragmentFoodNew();
         FragmentTransaction ft = fm.beginTransaction();
@@ -157,6 +156,7 @@ public class FragmentFoodList extends Fragment {
         ft.replace(R.id.fg_calory_content, ffn);
         ft.commit();
 
+*/
     }
 
     private void goBack(){

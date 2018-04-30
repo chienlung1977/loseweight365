@@ -3,16 +3,61 @@ package com.oli365.nc;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ActivityCaloryMain extends AppCompatActivity {
 
     private static final String TAG= ActivityCaloryMain.class.getName();
+
+    private ListView listView1;
+    private ArrayAdapter<String> listAdapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calory_main);
 
+        listView1 = (ListView) findViewById(R.id.recordList);
+        String[] someColors = new String[] { "Red", "Orange", "Yellow",
+                "Green", "Blue", "Indigo", "Violet", "Black", "White"};
+        ArrayList<String> colorArrayList = new ArrayList<String>();
+        colorArrayList.addAll( Arrays.asList(someColors) );
+        listAdapter1 = new ArrayAdapter<String>(this, R.layout.activity_calory_item,
+                R.id.rowitem,colorArrayList);
+        listView1.setAdapter( listAdapter1 );
+
+        listView1.setLongClickable(true);
+
+
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String itemValue = (String) listView1.getItemAtPosition(i);
+                Toast.makeText(getApplicationContext(),"position=" + i + ",itemvalue=" + itemValue,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String itemValue = (String) listView1.getItemAtPosition(i);
+                Toast.makeText(getApplicationContext(),"long click position=" + i + ",itemvalue=" + itemValue,
+                        Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
+
+        /*
         if (findViewById(R.id.fg_calory_content) != null) {
             if(savedInstanceState!=null){
                 return ;
@@ -24,6 +69,7 @@ public class ActivityCaloryMain extends AppCompatActivity {
 
         }
 
+*/
         //初始fragment
         /*
         if (savedInstanceState == null) {

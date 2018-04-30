@@ -26,6 +26,21 @@ public class SettingDAO {
     }
 
 
+    //取得體脂器類型 N 一般 H 七大指數
+    public String getLevel(){
+
+        return  sp.getString("sys_settings_system_level","N");
+
+    }
+
+
+
+
+    //region "封存"
+
+
+
+
     //設定app設定中的初始資料
     public boolean setSetting(){
 
@@ -56,10 +71,10 @@ public class SettingDAO {
             setFirstSetting();
             return true;
         }
-       catch (Exception ex){
-           LogDAO.LogError(context,TAG,ex);
-           return false;
-       }
+        catch (Exception ex){
+            LogDAO.LogError(context,TAG,ex);
+            return false;
+        }
 
 
     }
@@ -376,6 +391,9 @@ public class SettingDAO {
     }
 
     //endregion
+    //endregion
+
+
 
 
 }

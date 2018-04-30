@@ -62,11 +62,13 @@ public class DatePickerFragment extends DialogFragment  implements DatePickerDia
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), (ActivitySettings)getActivity(), year, month, day);
+         //   return new DatePickerDialog(getActivity(), (ActivitySettings)getActivity(), year, month, day);
+            return null;
         }
         else{
             Log.i(TAG,"onCreateDialog run yy=" + String.valueOf(yy) + ",mm=" + String.valueOf(mm) + ",dd=" + String.valueOf(dd));
-            return new DatePickerDialog(getActivity(), (ActivitySettings)getActivity(), yy, mm, dd);
+           // return new DatePickerDialog(getActivity(), (ActivitySettings)getActivity(), yy, mm, dd);
+            return null;
         }
 
     }

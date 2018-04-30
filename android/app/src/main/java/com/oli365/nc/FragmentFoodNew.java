@@ -2,8 +2,6 @@ package com.oli365.nc;
 
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -312,6 +310,7 @@ public class FragmentFoodNew extends Fragment {
     //返回
     private void go2Back(){
 
+        /*
         FragmentManager fm  = getFragmentManager();
         FragmentCaloryNew fcn =new FragmentCaloryNew();
         FragmentTransaction ft = fm.beginTransaction();
@@ -319,7 +318,7 @@ public class FragmentFoodNew extends Fragment {
         ft.replace(R.id.fg_calory_content, fcn);
 
         ft.commit();
-
+    */
     }
 
     //儲存資料

@@ -37,11 +37,15 @@
         android:id="@+id/action_mymenu_weight"
         android:title="@string/menu_mymenu_weight"
         app:showAsAction="always"
+        android:enabled="true"
+
+
         />
     <item
         android:id="@+id/action_mymenu_calory"
         android:title="@string/menu_mymenu_calory"
         app:showAsAction="always"
+
         />
     <!--
     <item

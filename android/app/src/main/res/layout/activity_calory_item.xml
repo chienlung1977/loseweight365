@@ -3,18 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/rowitem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:height="30dp"
+        />
 
-    <ListView
-        android:id="@+id/recordList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:longClickable="true"
-        android:layout_weight="1"
-        ></ListView>
-
-    </LinearLayout>
 </LinearLayout>
